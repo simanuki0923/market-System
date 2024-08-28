@@ -1,0 +1,108 @@
+.edit-profile {
+    width: 100%;
+    max-width: 700px;
+    /* Increased max-width for a wider layout */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: center;
+}
+
+.edit-profile h2 {
+    margin-bottom: 20px;
+}
+
+.edit-profile label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.edit-profile input[type="text"] {
+    width: 600px;
+    /* Increased max-width for wider input fields */
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.edit-profile .file-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.edit-profile .file-label {
+    display: inline-block;
+    color: #ff0000;
+    border: 2px solid #ff0000;
+    padding: 5px 10px;
+    cursor: pointer;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.edit-profile .file-label:hover {
+    background-color: #ffdddd;
+}
+
+.edit-profile img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+.edit-profile button {
+    display: block;
+    width: 100%;
+    max-width: 700px;
+    /* Increased max-width for wider button */
+    padding: 12px;
+    background-color: #ff0000;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.edit-profile button:hover {
+    background-color: #cc0000;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .edit-profile {
+        padding: 15px;
+    }
+
+    .edit-profile input[type="text"] {
+        width: 300px;
+        /* Remove max-width constraint on small screens */
+        padding: 10px;
+    }
+
+    .edit-profile .file-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .edit-profile img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .edit-profile button {
+        font-size: 14px;
+    }
+}

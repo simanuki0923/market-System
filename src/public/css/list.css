@@ -1,0 +1,109 @@
+/* リンクを横並びにし、文字サイズを大きくして、下線を画面いっぱいに表示 */
+.toggle-links {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.toggle-links a {
+    text-decoration: none;
+    font-size: 20px;
+    margin: 0 15px;
+    color: #333;
+    font-weight: bold;
+    position: relative;
+    top: 5px;
+}
+
+.toggle-links a:first-child {
+    color: red;
+}
+
+.toggle-links a:hover {
+    color: hsl(0, 0%, 88%);
+}
+
+.toggle-links::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background-color: hsl(0, 0%, 88%);
+}
+
+/* 画像を5列表示し、正方形カードスタイルにする */
+.product-list,
+.my-list {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 15px;
+}
+
+.product-item,
+.list-item {
+    text-align: center;
+    padding: 10px;
+}
+
+.product-item img,
+.list-item img {
+    width: 80%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    border-radius: 8px;
+    margin: 0 auto;
+}
+
+.list-item a {
+    display: block;
+    padding: 10px 0;
+    font-weight: bold;
+    color: hsl(0, 0%, 88%);
+    text-decoration: none;
+}
+
+.list-item a:hover {
+    text-decoration: underline;
+}
+
+/* スマートフォン用のレスポンシブデザイン */
+@media screen and (max-width: 768px) {
+    .toggle-links {
+        flex-wrap: wrap;
+        /* 横並びを維持しつつラップさせる */
+        justify-content: center;
+        /* 中央寄せにする */
+    }
+
+    .toggle-links a {
+        margin: 5px;
+        /* マージンを少し狭くする */
+        font-size: 18px;
+        /* スマートフォンで文字サイズを少し小さくする */
+    }
+
+    .toggle-links::after {
+        bottom: -10px;
+        /* 下線の位置を少し上げる */
+        height: 3px;
+        /* 下線を少し細くする */
+    }
+
+    .product-list,
+    .my-list {
+        grid-template-columns: repeat(2, 1fr);
+        /* 2列表示に変更 */
+        gap: 10px;
+        /* カード間のスペースを少し狭くする */
+    }
+
+    .product-item img,
+    .list-item img {
+        width: 100%;
+        /* 画像サイズをフル幅に調整 */
+        aspect-ratio: 1 / 1;
+    }
+}

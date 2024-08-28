@@ -1,0 +1,144 @@
+.product-detail__main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.product-detail__container {
+    display: flex;
+    width: 80%;
+    max-width: 1200px;
+    /* Adjust width as needed */
+    border: 2px solid #ddd;
+    /* Border for the large frame */
+    border-radius: 10px;
+    /* Optional: rounded corners */
+    overflow: hidden;
+    /* Ensure content doesn't overflow the container */
+}
+
+/* Left Half: Product Image */
+.product-detail__image {
+    flex: 1;
+    padding: 10px;
+}
+
+.product-detail__image img {
+    width: 100%;
+    height: auto;
+    /* Maintain aspect ratio */
+}
+
+/* Right Half: Product Information */
+.product-detail__info {
+    flex: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-detail__info h2 {
+    font-size: 30px;
+    /* Larger font size for the product name */
+}
+
+.price {
+    font-size: 30px;
+    /* Larger font size for price */
+    margin: 10px 0;
+}
+
+.action-buttons {
+    margin: 20px 0;
+    display: flex;
+    gap: 20px;
+    /* Space between buttons */
+}
+
+.action-buttons button {
+    border: none;
+    background: none;
+}
+
+.iconstar,
+.iconcomment {
+    width: 30px;
+    /* Size for icons */
+    height: 30px;
+}
+
+.purchase-button {
+    font-size: 20px;
+    /* Adjust size as needed */
+    padding: 10px;
+    background-color: red;
+    /* Button background color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    /* Rounded corners for button */
+    cursor: pointer;
+}
+
+.description {
+    margin-top: 20px;
+    font-size: 20px;
+    /* Adjust size as needed */
+}
+
+@media (max-width: 768px) {
+    .product-detail__container {
+        flex-direction: column;
+        width: 90%;
+        /* Adjust width as needed */
+    }
+
+    .product-detail__image {
+        padding: 5px;
+    }
+
+    .product-detail__info {
+        padding: 10px;
+    }
+
+    .product-detail__info h2 {
+        font-size: 24px;
+        /* Adjust font size for smaller screens */
+    }
+
+    .price {
+        font-size: 24px;
+        /* Adjust font size for smaller screens */
+    }
+
+    .action-buttons {
+        display: flex;
+        /* Ensure it uses flexbox */
+        flex-direction: row;
+        /* Align buttons horizontally */
+        gap: 10px;
+        /* Space between buttons */
+        margin: 20px 0;
+        /* Adjust margin as needed */
+    }
+
+    .iconstar,
+    .iconcomment {
+        width: 24px;
+        /* Adjust size for smaller screens */
+        height: 24px;
+    }
+
+    .purchase-button {
+        font-size: 18px;
+        /* Adjust size as needed */
+        padding: 8px;
+    }
+
+    .description {
+        font-size: 16px;
+        /* Adjust size as needed */
+    }
+}

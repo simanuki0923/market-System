@@ -1,0 +1,94 @@
+header {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+header a img {
+    height: 20px;
+    /* Adjust the height as needed */
+}
+
+header form {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+header form input[type="text"] {
+    width: 60%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+header .links {
+    display: flex;
+    align-items: center;
+}
+
+header .links a,
+header .links form {
+    margin-left: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+header .links .header-nav__button {
+    background-color: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+header .links a.button {
+    background-color: red;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+header .links a.button:hover {
+    background-color: darkred;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header form {
+        width: 100%;
+        justify-content: flex-start;
+        margin-top: 10px;
+    }
+
+    header form input[type="text"] {
+        width: 100%;
+    }
+
+    header .links {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+    header .links a,
+    header .links form {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+
+    header .links a.button {
+        width: 25%;
+        text-align: center;
+        margin-top: 10px;
+    }
+}

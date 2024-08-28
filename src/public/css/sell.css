@@ -1,0 +1,136 @@
+.contact-form__main {
+    padding: 20px;
+    background-color: #f4f4f4;
+    /* Light background for contrast */
+}
+
+.contact-form__main form {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+}
+
+/* Style for <h2> - center and large font */
+.contact-form__main h2 {
+    text-align: center;
+    font-size: 2em;
+    /* Adjust the size as needed */
+    margin-bottom: 20px;
+    /* Adjust the spacing as needed */
+}
+
+/* Style for <h3> - larger text with underline */
+.contact-form__main h3 {
+    font-size: 1.5em;
+    /* Adjust the size as needed */
+    text-decoration: underline;
+    margin-top: 20px;
+    /* Adjust the spacing as needed */
+    margin-bottom: 10px;
+    /* Adjust the spacing as needed */
+}
+
+/* Style for form labels */
+.contact-form__main label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Style for text inputs and textareas */
+.contact-form__main input[type="text"],
+.contact-form__main textarea,
+.contact-form__main select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Style for the file input container */
+.contact-form__main .file-input-container {
+    text-align: center;
+    /* Center contents horizontally */
+    margin-top: 20px;
+    /* Add spacing as needed */
+}
+
+/* Style for the file input */
+.contact-form__main input[type="file"] {
+    display: inline-block;
+    /* Make the file input behave like an inline block element */
+    border: 2px dashed black;
+    /* Black dashed border */
+    padding: 40px;
+    /* Add padding for better appearance */
+    background-color: #f9f9f9;
+    /* Optional: background color */
+    cursor: pointer;
+    /* Change cursor to pointer on hover */
+    width: auto;
+    /* Allow width to be determined by content */
+}
+
+/* Style for the submit button */
+.contact-form__main button[type="submit"] {
+    background-color: red;
+    /* Red background */
+    color: white;
+    border: none;
+    padding: 15px 0;
+    /* Adjust vertical padding to match other elements */
+    font-size: 1em;
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    /* Make the button width 100% to match other form elements */
+    box-sizing: border-box;
+    /* Include padding and border in the element's total width and height */
+    margin: 20px auto 0;
+    /* Center the button */
+}
+
+.contact-form__main button[type="submit"]:hover {
+    background-color: red;
+    /* Darker red on hover */
+}
+
+@media (max-width: 768px) {
+    .contact-form__main {
+        padding: 10px;
+        /* Reduce padding */
+    }
+
+    .contact-form__main h2 {
+        font-size: 1.5em;
+        /* Smaller font size */
+    }
+
+    .contact-form__main h3 {
+        font-size: 1.2em;
+        /* Smaller font size */
+    }
+
+    .contact-form__main input[type="file"] {
+        padding: 20px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .contact-form__main input[type="text"],
+    .contact-form__main textarea,
+    .contact-form__main select {
+        padding: 8px;
+        /* Adjust padding for smaller screens */
+    }
+
+    .contact-form__main button[type="submit"] {
+        padding: 10px 0;
+        /* Adjust padding for smaller screens */
+    }
+}
