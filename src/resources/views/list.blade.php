@@ -14,7 +14,9 @@
         <div id="recommendedProducts" class="product-list">
             @foreach ($recommendedProducts as $recommended)
                 <div class="product-item">
-                    <img src="{{ asset($recommended['image']) }}" alt="{{ $recommended['name'] }}">
+                    <a href="{{ route('product', ['id' => $recommended['id']]) }}">
+                        <img src="{{ asset($recommended['image']) }}" alt="{{ $recommended['name'] }}">
+                    </a>
                 </div>
             @endforeach
         </div>
@@ -22,8 +24,9 @@
         <div id="myList" class="my-list" style="display: none;">
             @foreach ($myList as $item)
                 <div class="list-item">
-                    <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}">
-                    <a href="{{ $item['link'] }}">リンク</a>
+                    <a href="{{ route('product', ['id' => $item['id']]) }}">
+                        <img src="{{ asset($item['image']) }}" alt="{{ $item['name'] }}">
+                    </a>
                 </div>
             @endforeach
         </div>
