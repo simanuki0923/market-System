@@ -20,7 +20,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 Route::get('/', [ProductController::class, 'list'])->name('product.list');
 
 // 商品詳細ページ
-Route::get('/product', [ProductController::class, 'product'])->name('product');
+Route::get('/product/{id}', [ProductController::class, 'product'])->name('product');
 
 // ログアウト処理
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
@@ -29,7 +29,7 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 // ログアウト後のリダイレクト
 Route::get('/logout-redirect', function () {
-    return redirect()->route('list');
+    return redirect()->route('product.list');
 });
 
 Route::middleware('auth')->group(function () {
