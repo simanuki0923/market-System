@@ -10,42 +10,34 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function list()
-  {
-    $product = [
-        'name' => 'Example Product',
-        'price' => 100,
-        'image' => 'img/サンプル画像.png',
-    ];
-
-    // おすすめ商品とマイリストデータを仮に用意します
+   {
     $recommendedProducts = [
-        ['name' => 'Recommended Product 1', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Recommended Product 2', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Recommended Product 3', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Recommended Product 4', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Recommended Product 5', 'image' => 'img/サンプル画像.png'],
+        ['id' => 1, 'name' => 'Recommended Product 1', 'image' => 'img/サンプル画像.png'],
+        ['id' => 2, 'name' => 'Recommended Product 2', 'image' => 'img/サンプル画像.png'],
+        ['id' => 3, 'name' => 'Recommended Product 3', 'image' => 'img/サンプル画像.png'],
+        ['id' => 4, 'name' => 'Recommended Product 4', 'image' => 'img/サンプル画像.png'],
+        ['id' => 5, 'name' => 'Recommended Product 5', 'image' => 'img/サンプル画像.png'],
     ];
 
     $myList = [
-        ['name' => 'My List Item 1', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'My List Item 2', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'My List Item 3', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'My List Item 4', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'My List Item 5', 'link' => '#', 'image' => 'img/サンプル画像.png'],
+        ['id' => 1, 'name' => 'My List Item 1', 'link' => '#', 'image' => 'img/サンプル画像.png'],
+        ['id' => 2, 'name' => 'My List Item 2', 'link' => '#', 'image' => 'img/サンプル画像.png'],
+        ['id' => 3, 'name' => 'My List Item 3', 'link' => '#', 'image' => 'img/サンプル画像.png'],
+        ['id' => 4, 'name' => 'My List Item 4', 'link' => '#', 'image' => 'img/サンプル画像.png'],
+        ['id' => 5, 'name' => 'My List Item 5', 'link' => '#', 'image' => 'img/サンプル画像.png'],
     ];
 
     return view('list', [
-        'product' => $product,
         'recommendedProducts' => $recommendedProducts,
         'myList' => $myList,
     ]);
-  }
+   }
   
-    public function product()
-    
-{
+    public function product($id)
+   {
+    // Example data for a specific product
     $product = (object) [
-        'id' => 1,  // IDを追加
+        'id' => $id,  // Use the ID from the URL
         'image_url' => 'img/サンプル画像.png',
         'name' => '商品名',
         'description' => '商品説明',
@@ -53,7 +45,7 @@ class ProductController extends Controller
     ];
 
     return view('product', compact('product'));
-}
+   }
 
     public function showComments($id)
 {
