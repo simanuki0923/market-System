@@ -10,42 +10,73 @@ use Illuminate\Http\Request;
 class ProductController extends Controller
 {
     public function list()
-   {
-    $recommendedProducts = [
-        ['id' => 1, 'name' => 'Recommended Product 1', 'image' => 'img/サンプル画像.png'],
-        ['id' => 2, 'name' => 'Recommended Product 2', 'image' => 'img/サンプル画像.png'],
-        ['id' => 3, 'name' => 'Recommended Product 3', 'image' => 'img/サンプル画像.png'],
-        ['id' => 4, 'name' => 'Recommended Product 4', 'image' => 'img/サンプル画像.png'],
-        ['id' => 5, 'name' => 'Recommended Product 5', 'image' => 'img/サンプル画像.png'],
-    ];
+{
+    // おすすめ商品をデータベースから取得
+    $recommendedProducts = Product::all(); 
 
-    $myList = [
-        ['id' => 1, 'name' => 'My List Item 1', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['id' => 2, 'name' => 'My List Item 2', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['id' => 3, 'name' => 'My List Item 3', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['id' => 4, 'name' => 'My List Item 4', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['id' => 5, 'name' => 'My List Item 5', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-    ];
+    // 現在ログインしているユーザー
+    $user = auth()->user();
+
+    // マイリスト（お気に入り）を取得
+    $myList = $user ? $user->favorites()->with('product')->get()->map(function ($favorite) {
+        return [
+            'id' => $favorite->product->id,
+            'name' => $favorite->product->name,
+            'image_url' => $favorite->product->image_url,
+            'link' => route('product', ['id' => $favorite->product->id]),
+        ];
+    }) : [];
 
     return view('list', [
         'recommendedProducts' => $recommendedProducts,
         'myList' => $myList,
     ]);
-   }
-  
-    public function product($id)
-   {
-    // Example data for a specific product
-    $product = (object) [
-        'id' => $id,  // Use the ID from the URL
-        'image_url' => 'img/サンプル画像.png',
-        'name' => '商品名',
-        'description' => '商品説明',
-        'price' => 1000
-    ];
+}
 
-    return view('product', compact('product'));
-   }
+public function product($id)
+{
+    // 商品をデータベースから取得
+    $product = Product::find($id);
+
+    // 商品が見つからない場合の処理
+    if (!$product) {
+        abort(404, '商品が見つかりません');
+    }
+
+    // お気に入りされているかをチェック
+    $isFavorited = auth()->check() && auth()->user()->favorites()->where('product_id', $id)->exists();
+
+    return view('product', [
+        'product' => $product,
+        'isFavorited' => $isFavorited,
+    ]);
+}
+
+   public function toggleFavorite($id)
+{
+    $product = Product::findOrFail($id);
+    $user = auth()->user();
+    
+    // お気に入りをトグル（追加または削除）
+    $isFavorited = $user->favorites()->where('product_id', $product->id)->exists();
+
+    if ($isFavorited) {
+        // お気に入りから削除
+        $user->favorites()->where('product_id', $product->id)->delete();
+    } else {
+        // お気に入りに追加
+        $user->favorites()->create(['product_id' => $product->id]);
+    }
+
+    // 現在のお気に入り数を取得
+    $favoritesCount = $product->favorites()->count();
+
+    return response()->json([
+        'success' => true,
+        'favorited' => !$isFavorited,
+        'favorites_count' => $favoritesCount
+    ]);
+}
 
     public function showComments($id)
 {
@@ -73,8 +104,6 @@ class ProductController extends Controller
     return redirect()->route('product.comments', ['id' => $id])
                      ->with('success', 'コメントが投稿されました。');
 }
-
-    
 
   public function mypage()
     {

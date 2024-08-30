@@ -16,11 +16,16 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-    // ホーム画面ページ
+// ホーム画面ページ
 Route::get('/', [ProductController::class, 'list'])->name('product.list');
 
 // 商品詳細ページ
 Route::get('/product/{id}', [ProductController::class, 'product'])->name('product');
+
+// お気に入りのトグル（ログインしていない場合リダイレクト）
+Route::post('/product/{id}/favorite', [ProductController::class, 'toggleFavorite'])
+    ->name('product.toggleFavorite')
+    ->middleware('auth');
 
 // ログアウト処理
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
@@ -32,25 +37,27 @@ Route::get('/logout-redirect', function () {
     return redirect()->route('product.list');
 });
 
+// ログインが必要なルート
 Route::middleware('auth')->group(function () {
 
-Route::get('/product/{id}/comments', [ProductController::class, 'showComments'])->name('product.comments');
-Route::post('/product/{id}/comments', [ProductController::class, 'storeComment'])->name('product.storeComment');
+    // コメントページ
+    Route::get('/product/{id}/comments', [ProductController::class, 'showComments'])->name('product.comments');
+    Route::post('/product/{id}/comments', [ProductController::class, 'storeComment'])->name('product.storeComment');
 
-// 購入ページ
-Route::get('/purchase', [ProductController::class, 'purchase'])->name('purchase');
+    // 購入ページ
+    Route::get('/purchase', [ProductController::class, 'purchase'])->name('purchase');
 
-// 住所登録ページ
-Route::get('/address', [ProductController::class, 'editAddress'])->name('address.edit');
-Route::post('/address/update', [ProductController::class, 'updateAddress'])->name('address.update');
+    // 住所登録ページ
+    Route::get('/address', [ProductController::class, 'editAddress'])->name('address.edit');
+    Route::post('/address/update', [ProductController::class, 'updateAddress'])->name('address.update');
 
-// マイページ
-Route::get('/mypage', [ProductController::class, 'mypage'])->name('mypage');
+    // マイページ
+    Route::get('/mypage', [ProductController::class, 'mypage'])->name('mypage');
 
-// プロフィール編集ページ
-Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    // プロフィール編集ページ
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
-// 出品ページ
-Route::get('/sell', [TestController::class, 'sell'])->name('sell');
+    // 出品ページ
+    Route::get('/sell', [TestController::class, 'sell'])->name('sell');
 });
