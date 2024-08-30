@@ -18,9 +18,15 @@ class Favorite extends Model
         'user_id'
     ];
 
-    // Define relationships if needed
+    // Productとのリレーションシップの定義
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(Product::class);
+    }
+
+    // Userとのリレーションシップの定義
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
