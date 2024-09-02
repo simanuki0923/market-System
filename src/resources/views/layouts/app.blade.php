@@ -12,29 +12,29 @@
 </head>
 <body>
     <header>
-    <a href="/">
-        <img src="{{ asset('img/logo.svg') }}" alt="COACHTECHロゴ">
-    </a>
-    <form action="/search" method="GET">
-        <input type="text" name="search" placeholder="何をお探しですか？">
-    </form>
-    <div class="links">
-        @if (Auth::check())
-            <a href="/mypage">マイページ</a>
-            <form class="form" action="/logout" method="post">
-            @csrf
-            <button class="header-nav__button">ログアウト</button>
-            </form>
-        @else
-            <a href="/login">ログイン</a>
-            <a href="/register">会員登録</a>
-        @endif
-        <a href="/sell" class="button">出品</a>
-    </div>
-    @yield('header')
-</header>
+        <a href="/">
+            <img src="{{ asset('img/logo.svg') }}" alt="COACHTECHロゴ">
+        </a>
+        <form action="/search" method="GET">
+            <input type="text" name="search" placeholder="何をお探しですか？">
+        </form>
+        <nav>
+            @if (Auth::check())
+                <a href="/mypage">マイページ</a>
+                <form action="/logout" method="post">
+                    @csrf
+                    <button type="submit" class="header-nav__button">ログアウト</button>
+                </form>
+            @else
+                <a href="/login">ログイン</a>
+                <a href="/register">会員登録</a>
+            @endif
+            <a href="/sell" class="button">出品</a>
+        </nav>
+    </header>
     <main>
         @yield('content')
     </main>
+    @yield('footer')
 </body>
 </html>

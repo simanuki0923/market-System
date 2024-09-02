@@ -7,46 +7,48 @@
 @section('content')
     <main class="product-list">
         <div class="container">
-            <div class="tab-buttons">
-                <button id="toggleRecommended">おすすめ商品</button>
-                <button id="toggleMyList">マイリスト</button>
-            </div>
+            <nav class="tab-buttons">
+                <a href="#" id="toggleRecommended" class="tab-link">おすすめ商品</a>
+                <a href="#" id="toggleMyList" class="tab-link">マイリスト</a>
+            </nav>
+
             <!-- おすすめ商品 -->
-            <div id="recommendedProducts" class="product-list__section">
-                <div class="product-list__items">
+            <section id="recommendedProducts" class="product-list__section">
+                <ul class="product-list__items">
                     @foreach ($recommendedProducts as $product)
-                        <div class="product-item">
+                        <li class="product-item">
                             <a href="{{ route('product', ['id' => $product->id]) }}">
                                 <img src="{{ $product->image_url ? asset($product->image_url) : asset('img/no-image.png') }}" alt="{{ $product->name }}">
                             </a>
-                        </div>
+                        </li>
                     @endforeach
-                </div>
-            </div>
+                </ul>
+            </section>
 
             <!-- マイリスト -->
-            <div id="myList" class="product-list__section" style="display: none;">
-                <div class="product-list__items">
+            <section id="myList" class="product-list__section" style="display: none;">
+                <ul class="product-list__items">
                     @foreach ($myList as $product)
-                        <div class="product-item">
+                        <li class="product-item">
                             <a href="{{ $product['link'] }}">
                                 <img src="{{ $product['image_url'] ? asset($product['image_url']) : asset('img/no-image.png') }}" alt="{{ $product['name'] }}">
                             </a>
-                        </div>
+                        </li>
                     @endforeach
-                </div>
-            </div>
-            
+                </ul>
+            </section>
         </div>
     </main>
 
     <script>
-        document.getElementById('toggleRecommended').addEventListener('click', function() {
+        document.getElementById('toggleRecommended').addEventListener('click', function(e) {
+            e.preventDefault();
             document.getElementById('recommendedProducts').style.display = 'block';
             document.getElementById('myList').style.display = 'none';
         });
 
-        document.getElementById('toggleMyList').addEventListener('click', function() {
+        document.getElementById('toggleMyList').addEventListener('click', function(e) {
+            e.preventDefault();
             document.getElementById('recommendedProducts').style.display = 'none';
             document.getElementById('myList').style.display = 'block';
         });
