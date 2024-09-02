@@ -39,4 +39,9 @@ class Product extends Model
     {
         return $this->favorites()->where('user_id', $userId)->exists();
     }
+
+    public function purchases()
+    {
+        return $this->hasMany(Purchase::class);
+    }
 }

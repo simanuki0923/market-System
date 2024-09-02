@@ -55,8 +55,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage', [ProductController::class, 'mypage'])->name('mypage');
 
     // プロフィール編集ページ
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/profile', [ProductController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/update', [ProductController::class, 'update'])->name('profile.update');
 
     // 出品ページ
     Route::get('/sell', [TestController::class, 'sell'])->name('sell');

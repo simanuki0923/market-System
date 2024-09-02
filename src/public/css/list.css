@@ -1,106 +1,101 @@
 .tab-buttons {
     display: flex;
     justify-content: flex-start;
+    border-bottom: 5px solid gray;
     margin-bottom: 20px;
+    padding-bottom: 5px;
+    width: 100vw;
+    box-sizing: border-box;
     position: relative;
-    flex-wrap: wrap;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
 }
 
-.tab-buttons button {
-    background: none;
-    border: none;
-    padding: 15px 30px;
-    margin: 0 5px;
-    cursor: pointer;
-    font-size: 18px;
-    text-transform: uppercase;
-    color: #333;
-    transition: background-color 0.3s, color 0.3s;
-    white-space: nowrap;
-}
-
-.tab-buttons button:hover {
-    background-color: #f0f0f0;
-}
-
-/* 選択しているボタンのスタイル */
-.tab-buttons button.active {
-    color: #f00;
+.tab-buttons .tab-link {
+    padding: 10px;
+    text-decoration: none;
+    color: black;
+    font-size: 1.2rem;
     font-weight: bold;
+    margin-right: 10px;
 }
 
-/* ボタン下の下線 */
-.tab-buttons::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 100%;
-    border-bottom: 5px solid #ccc;
+.tab-buttons .tab-link:hover,
+.tab-buttons .tab-link.active {
+    color: red;
 }
 
-/* 商品リストのスタイル */
-.product-list {
-    padding-bottom: 20px;
-}
-
-/* 商品リストのアイテム */
 .product-list__items {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
 
 .product-item {
-    flex: 1 1 calc(20% - 10px);
-    /* 1行に5つ並ぶように調整 */
+    margin-bottom: 60px;
+    margin-right: 25px;
+    text-align: center;
+    position: relative;
+    width: calc(20% - 20px);
+    padding-bottom: calc(20% - 40px);
     box-sizing: border-box;
-    overflow: hidden;
-    transition: box-shadow 0.3s;
+}
+
+.product-item:nth-child(5n) {
+    margin-right: 0;
 }
 
 .product-item img {
-    width: 70%;
-    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
+    margin: 0 auto;
 }
 
-/* スマートフォン用レスポンシブデザイン */
+
 @media (max-width: 768px) {
     .tab-buttons {
         flex-direction: row;
-        /* ボタンを横並びにする */
-        flex-wrap: wrap;
-        /* ボタンが折り返せるようにする */
-        justify-content: center;
-        /* ボタンを中央に配置 */
+        align-items: center;
+        overflow-x: auto;
     }
 
-    .tab-buttons button {
-        padding: 10px 20px;
-        font-size: 16px;
-        margin: 5px;
+    .tab-buttons .tab-link {
+        margin-right: 10px;
+        margin-bottom: 0;
     }
 
     .product-list__items {
-        flex-direction: row;
-        /* 2列表示のために row に設定 */
-        flex-wrap: wrap;
-        /* アイテムが折り返すようにする */
-        gap: 10px;
         justify-content: center;
-        /* アイテムを中央揃え */
     }
 
     .product-item {
-        flex: 1 1 calc(50% - 10px);
-        /* 2列表示に調整 */
-        max-width: calc(50% - 10px);
-        /* アイテムの最大幅を2列分に設定 */
+        width: calc(50% - 10px);
+        padding-bottom: calc(50% - 40px);
+        margin-bottom: 40px;
+        margin-right: 10px;
+        text-align: center;
+        position: relative;
     }
 
     .product-item img {
         width: 100%;
-        /* 商品画像をカードの幅に合わせる */
+        height: auto;
+        max-height: 100%;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto;
+    }
+
+    .product-item:nth-child(2n) {
+        margin-right: 0;
     }
 }
