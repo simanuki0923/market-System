@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Product;
 use App\Models\Comment;
 use App\Models\Favorite;
+use App\Models\Purchase;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -24,6 +27,9 @@ class ProductController extends Controller
             'name' => $favorite->product->name,
             'image_url' => $favorite->product->image_url,
             'link' => route('product', ['id' => $favorite->product->id]),
+            'category' => $favorite->product->category->name ?? 'Uncategorized',
+            'brand' => $favorite->product->brand,
+            'condition' => $favorite->product->condition,
         ];
     }) : [];
 
@@ -49,6 +55,9 @@ public function product($id)
     return view('product', [
         'product' => $product,
         'isFavorited' => $isFavorited,
+        'category' => $product->category->name ?? 'Uncategorized',
+        'brand' => $product->brand,
+        'condition' => $product->condition,
     ]);
 }
 
@@ -105,72 +114,70 @@ public function product($id)
                      ->with('success', 'コメントが投稿されました。');
 }
 
-  public function mypage()
-    {
-      $product = [
-        'image' => 'img/サンプル画像.png',
-    ];
+    public function mypage()
+{
+    $user = auth()->user();
+    
+    // ユーザーが出品した商品を取得
+    $listedProducts = $user->products()->get(); // or use ->toArray() if needed
+    
+    // ユーザーが購入した商品を取得し、その商品情報を含める
+    $purchasedProducts = $user->purchases()->with('product')->get()->map(function ($purchase) {
+        return [
+            'id' => $purchase->product->id,
+            'name' => $purchase->product->name,
+            'image_url' => $purchase->product->image_url,
+            'link' => route('product', ['id' => $purchase->product->id]),
+            'category' => $purchase->product->category->name ?? 'Uncategorized',
+            'brand' => $purchase->product->brand,
+            'condition' => $purchase->product->condition,
+        ];
+    });
 
-    // 出品商品データを仮に用意します
-    $listedProducts = [
-        ['name' => 'Listed Product 1', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Listed Product 2', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Listed Product 3', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Listed Product 4', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Listed Product 5', 'image' => 'img/サンプル画像.png'],
-
-    ];
-
-    // 購入商品データを仮に用意します
-    $purchasedProducts = [
-        ['name' => 'Purchased Product 1', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Purchased Product 2', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Purchased Product 3', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Purchased Product 4', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-        ['name' => 'Purchased Product 5', 'link' => '#', 'image' => 'img/サンプル画像.png'],
-
-    ];
+    // アイコン画像のURLを生成
+    $iconUrl = $user->profile && $user->profile->icon_image_path 
+        ? asset('storage/' . str_replace('public/', '', $user->profile->icon_image_path)) 
+        : asset('img/sample.jpg');
 
     return view('mypage', [
-        'product' => $product,
+        'user' => $user,
         'listedProducts' => $listedProducts,
         'purchasedProducts' => $purchasedProducts,
-    ]); 
+        'icon_url' => $iconUrl
+    ]);
+   }
+
+   public function edit()
+   {
+    $user = auth()->user(); // または、必要に応じてユーザーを取得するロジック
+    return view('profile', compact('user'));
+   }
+
+   public function update(Request $request)
+   {
+    $user = auth()->user();
+    $profile = $user->profile;
+
+    // バリデーション
+    $request->validate([
+        'name' => 'required|string|max:255',
+        'icon_image' => 'nullable|image|max:2048',
+        // 他のバリデーションルール
+    ]);
+
+    // プロフィールの更新
+    $profile->name = $request->input('name');
+
+    if ($request->hasFile('icon_image')) {
+        $iconPath = $request->file('icon_image')->store('public/icons');
+        $profile->icon_image_path = str_replace('public/', '', $iconPath);
     }
 
-    public function editAddress()
-    {
-        // Mock data
-        $user = (object) [
-            'postal_code' => '123-4567',
-            'address' => '東京都渋谷区神南1丁目',
-            'building' => 'Mock Building 101',
-        ];
+    // 他のフィールドも更新
 
-        return view('address', compact('user'));
-    }
+    $profile->save();
 
-    // Method to handle the form submission (this can stay the same)
-    public function updateAddress(Request $request)
-    {
-        // Validation and update logic as previously provided
-        // For mock data, this would typically not be executed
-        return redirect()->back()->with('success', '住所が更新されました。');
-    }
-
-    public function purchase()
-{
-    $mockData = [
-        'product_image' => 'img//サンプル画像.png',
-        'product_name' => '商品名',
-        'price' => '¥3,000',
-        'payment_method' => 'クレジットカード',
-        'shipping_address' => '東京都渋谷区1-2-3',
-        'total_amount' => '¥3,000',
-    ];
-
-    return view('purchase', compact('mockData'));
-}
-
+    return redirect()->route('profile.edit')->with('success', 'プロフィールが更新されました。');
+   }
     
 }
