@@ -9,19 +9,15 @@ class Comment extends Model
 {
     use HasFactory;
 
-    // Define the table name if different from the default
-    protected $table = 'comments';
+    protected $fillable = ['product_id', 'user_id', 'comment'];
 
-    // Specify the fields that are mass assignable
-    protected $fillable = [
-        'product_id',
-        'user_id',
-        'content'
-    ];
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
-    // Define relationships if needed
     public function product()
     {
-        return $this->belongsTo(Product::class, 'product_id');
+        return $this->belongsTo(Product::class);
     }
 }

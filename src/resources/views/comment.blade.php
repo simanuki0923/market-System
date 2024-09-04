@@ -5,64 +5,99 @@
 @endsection
 
 @section('content')
-    <main class="product-detail__main">
+    <main class="product-detail">
         <div class="product-detail__container">
             <!-- Left Half: Product Image -->
-            <div class="product-detail__image">
-                <img src="{{ $product->image_url ?? 'default_image.png' }}" alt="{{ $product->name ?? '商品名' }}">
-            </div>
+            <section class="product-detail__image">
+                <img src="{{ asset($product->image_url) ?? asset('img/sample.jpg') }}" alt="{{ $product->name ?? '商品名' }}">
+            </section>
 
             <!-- Right Half: Product Information -->
-            <div class="product-detail__info">
-                <h2>{{ $product->name ?? '商品名' }}</h2>
-                <p class="price">価格: {{ $product->price ?? '0' }}円</p>
+            <section class="product-detail__info">
+                <h2>{{ $product->name ?? '商品名がありません' }}</h2>
+                <p class="brand">ブランド: {{ $product->brand ?? 'ブランド情報がありません' }}</p>
+                <p class="price">¥{{ $product->price ? number_format($product->price) : '価格が設定されていません' }}(値段)</p>
 
                 <!-- Favorite and Comment Buttons -->
-                <div class="action-buttons">
-                    <button>
+                <div class="product-detail__actions">
+                    <button class="favorite-button {{ $isFavorited ? 'favorited' : '' }}" data-product-id="{{ $product->id }}">
                         <img class="iconstar" src="{{ asset('img/星.png') }}" alt="お気に入り">
+                        <span class="favorite-count">{{ $product->favorites_count }}</span>
                     </button>
-                    <button type="button" onclick="window.location='{{ route('product') }}'">
+                    <button type="button" onclick="window.location='{{ route('product.comments', ['id' => $product->id]) }}'">
                         <img class="iconcomment" src="{{ asset('img/吹き出し.png') }}" alt="コメントする">
+                        <span class="comment-count">{{ $product->comments_count }}</span>
                     </button>
                 </div>
 
                 <!-- Display Comments -->
-                <div class="comments-section">
-                    <h3>コメント一覧</h3>
-                    @if(!empty($comments))
+                <section class="product-detail__comments">
+                    @if(isset($comments) && $comments->isNotEmpty())
                         @foreach($comments as $comment)
-            <div class="comment">
-                <div class="comment-header">
-                    <!-- Display user icon -->
-                    <img src="{{ $comment['user_icon'] ?? 'default_icon.png' }}" alt="{{ $comment['user'] }}" class="user-icon">
-                    <strong>{{ $comment['user'] }}</strong>
-                </div>
-                  <p>{{ $comment['content'] }}</p>
-            </div>
-                      @endforeach
+                            <article class="comment">
+                                <div class="comment__header">
+                                    <!-- Display user icon -->
+                                    <img src="{{ $comment->user->profile && $comment->user->profile->icon_image_path 
+                                        ? asset('storage/' . $comment->user->profile->icon_image_path) 
+                                        : asset('img/sample.jpg') }}" 
+                                        alt="{{ $comment->user->profile->name ?? $comment->user->name }}" 
+                                        class="comment__user-icon">
+                                    <strong>{{ $comment->user->profile->name ?? $comment->user->name }}</strong>
+                                </div>
+                                <p>{{ $comment->comment_text }}</p>
+                                @if(auth()->check() && auth()->id() == $comment->user_id)
+                                    <!-- Delete button -->
+                                    <form action="{{ route('product.destroyComment', ['productId' => $product->id, 'commentId' => $comment->id]) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">削除</button>
+                                    </form>
+                                @endif
+                            </article>
+                        @endforeach
                     @else
                         <p>コメントはまだありません。</p>
                     @endif
-                </div>
+                </section>
 
                 <!-- Comment Form -->
-                <div class="comment-form">
-                    <h3>コメントを投稿する</h3>
+                <section class="product-detail__comment-form">
                     <form action="{{ route('product.storeComment', ['id' => $product->id]) }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="username">名前</label>
-                            <input type="text" name="username" id="username" class="form-control" required>
-                        </div>
-                        <div class="form-group">
                             <label for="content">コメント内容</label>
-                            <textarea name="content" id="content" class="form-control" required></textarea>
+                            <textarea name="comment" id="content" class="form-control" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-primary">コメントを送信する</button>
                     </form>
-                </div>
-            </div>
+                </section>
+            </section>
         </div>
     </main>
+
+    <!-- Add JavaScript for the favorite toggle functionality -->
+    <script>
+        document.querySelector('.favorite-button').addEventListener('click', function() {
+            const productId = this.dataset.productId;
+
+            fetch(`/product/${productId}/favorite`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({})
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    this.classList.toggle('favorited', data.favorited);
+                    document.querySelector('.favorite-count').textContent = data.favorites_count;
+                } else if (data.error) {
+                    alert(data.error); // 例：ログインしていない場合のエラーメッセージ
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
 @endsection

@@ -1,326 +1,161 @@
-.product-detail__main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 15px;
-    /* Reduced padding */
-    font-family: Arial, sans-serif;
-}
-
 .product-detail__container {
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 50%;
-    /* Reduced width */
-    margin-bottom: 15px;
-    /* Reduced margin */
+    gap: 20px;
+    
 }
 
 .product-detail__image {
     flex: 1;
-    max-width: 250px;
-    /* Reduced max width */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+    max-width: 60%;
 }
 
 .product-detail__image img {
-    width: 100%;
+    width: 80%;
     height: auto;
+    display: block;
+    margin-left: 90%;
 }
 
 .product-detail__info {
     flex: 2;
-    margin-left: 15px;
-    /* Reduced margin */
+    margin-left: 25%;
 }
 
-.product-detail__info h2 {
-    font-size: 20px;
-    /* Reduced font size */
+.product-detail__info h1 {
+    font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 8px;
-    /* Reduced margin */
+}
+
+.product-detail__info .brand {
+    font-size: 20px;
+    color: black;
+    margin-top: 5px;
 }
 
 .product-detail__info .price {
-    font-size: 16px;
-    /* Reduced font size */
-    color: #888;
-    margin-bottom: 15px;
-    /* Reduced margin */
+    font-size: 1.5rem;
+    margin-top: 10px;
 }
 
-.action-buttons {
+.product-detail__actions {
     display: flex;
-    gap: 8px;
-    /* Reduced gap */
-    margin-bottom: 15px;
-    /* Reduced margin */
+    gap: 50px;
+    margin-top: 15px;
+    margin-bottom: 50px;
 }
 
-.action-buttons button {
+.product-detail__actions button {
     background: none;
     border: none;
+    padding: 0;
     cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.action-buttons img {
-    width: 28px;
-    /* Reduced icon size */
-    height: 28px;
+.product-detail__actions button img {
+    width: 35px;
+    height: 35px;
 }
 
-.comments-section {
-    width: 100%;
-    margin-bottom: 15px;
-    /* Reduced margin */
+.product-detail__actions .favorite-count,
+.product-detail__actions .comment-count {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    color: #333;
 }
 
-.comments-section h3 {
-    font-size: 16px;
-    /* Reduced font size */
-    margin-bottom: 8px;
-    /* Reduced margin */
+.product-detail__comments h2 {
+    margin-top: 20px;
+    font-size: 1.5rem;
 }
 
 .comment {
-    /* Added gray background */
+    margin-bottom: 5px;
     padding: 10px;
-    /* Adjusted padding */
-    margin-bottom: 10px;
-    /* Added margin between comments */
     border-radius: 5px;
-    /* Optional: Add border-radius for rounded corners */
+    position: relative;
+}
+
+.comment__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 5px;
+}
+
+.comment__user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 15px;
+}
+
+.comment__header strong {
+    font-weight: bold;
 }
 
 .comment p {
-    border: 1px solid #ccc;
-    /* Added border */
-    background-color: #f0f0f0;
-    /* Added gray background */
+    margin-left: 10px;
+    padding: 10px;
     border-radius: 5px;
+    background-color: #f7f7f7;
+    margin-top: 5px;
+    max-width: 40%;
 }
 
-.comment-header {
+.product-detail__comment-form {
+    margin-top: 30px;
     display: flex;
-    align-items: center;
-    /* Border to separate header from content */
-    padding-bottom: 8px;
-    /* Padding for separation */
-    margin-bottom: 8px;
-    /* Margin between header and content */
+    flex-direction: column;
+    gap: 10px;
 }
 
-.user-icon {
-    width: 30px;
-    /* Adjust size as needed */
-    height: 30px;
-    border-radius: 50%;
-    /* Makes the icon round */
-    border: 2px solid #ddd;
-    /* Circular border around the icon */
-    margin-right: 10px;
-    /* Space between icon and username */
+.product-detail__comment-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
 }
 
-.comment-username {
+.product-detail__comment-form label {
     font-weight: bold;
-    font-size: 14px;
-    /* Slightly larger font size */
-    margin-right: 10px;
-    /* Space between username and comment */
-    border: none;
-    /* Ensure no border around username */
+    margin-bottom: 5px;
 }
 
-.comment-content {
-    font-size: 16px;
-    /* Slightly larger font size */
-    background-color: #f0f0f0;
-    /* Gray background for the comment */
-    border: 1px solid #ddd;
-    /* Gray border for the comment */
-    padding: 12px;
-    /* Padding for the comment content */
+.product-detail__comment-form textarea {
+    width: 45%;
+    padding: 30px;
     border-radius: 5px;
-    /* Optional: Rounded corners for the comment */
-}
-
-.comment-form {
-    width: 100%;
-}
-
-.comment-form h3 {
-    font-size: 16px;
-    /* Reduced font size */
-    margin-bottom: 8px;
-    /* Reduced margin */
-}
-
-.comment-form .form-group {
-    margin-bottom: 10px;
-    /* Reduced margin */
-}
-
-.comment-form label {
-    font-size: 12px;
-    /* Reduced font size */
-    margin-bottom: 3px;
-    /* Reduced margin */
-    display: block;
-}
-
-.comment-form input[type="text"],
-.comment-form textarea {
-    width: 100%;
-    padding: 8px;
-    /* Reduced padding */
-    font-size: 12px;
-    /* Reduced font size */
     border: 1px solid #ccc;
-    border-radius: 5px;
+    font-size: 1rem;
+    resize: vertical;
 }
 
-.comment-form button {
-    background-color: #ff5252;
-    color: white;
-    padding: 10px 20px;
-    /* Reduced padding */
+.product-detail__comment-form button {
+    background-color: #ff0000;
     border: none;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 1rem;
     border-radius: 5px;
-    font-size: 14px;
-    /* Reduced font size */
     cursor: pointer;
-    width: 100%;
+    align-self: flex-start;
+    margin-top: 20px;
 }
 
-.comment-form button:hover {
-    background-color: #ff3333;
+.product-detail__comment-form button:hover {
+    background-color: #cc0000;
 }
 
-@media (max-width: 768px) {
-    .product-detail__main {
-        padding: 15px;
-        /* Paddingを少し広げる */
-    }
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
 
-    .product-detail__container {
-        flex-direction: column;
-        align-items: center;
-        width: 90%;
-        /* 画面幅の90%に設定 */
-        margin-bottom: 20px;
-        /* マージンを少し広げる */
-    }
-
-    .product-detail__image {
-        max-width: 250px;
-        /* より広い画像サイズ */
-        margin-bottom: 20px;
-        /* 画像下のマージンを広げる */
-    }
-
-    .product-detail__info {
-        margin-left: 0;
-        /* 左マージンを削除 */
-        text-align: center;
-        /* テキストを中央揃え */
-    }
-
-    .product-detail__info h2 {
-        font-size: 20px;
-        /* 少し大きなフォントサイズ */
-    }
-
-    .product-detail__info .price {
-        font-size: 16px;
-        /* 少し大きなフォントサイズ */
-    }
-
-    .action-buttons {
-        justify-content: center;
-        /* アクションボタンを中央揃え */
-        margin-bottom: 20px;
-        /* マージンを広げる */
-    }
-
-    .action-buttons img {
-        width: 32px;
-        /* アイコンサイズを少し大きくする */
-        height: 32px;
-    }
-
-    .comments-section h3 {
-        font-size: 18px;
-        /* 少し大きなフォントサイズ */
-    }
-
-    .comment {
-        padding: 12px;
-        /* パディングを広げる */
-        margin-bottom: 12px;
-        /* コメント間のマージンを広げる */
-    }
-
-    .comment-header {
-        padding-bottom: 12px;
-        /* Padding for separation */
-        margin-bottom: 12px;
-        /* Margin between header and content */
-    }
-
-    .user-icon {
-        width: 40px;
-        /* Larger icon size for better visibility */
-        height: 40px;
-        border: 2px solid #ddd;
-        /* Larger border around the icon */
-        margin-right: 12px;
-        /* Space between icon and username */
-    }
-
-    .comment-username {
-        font-size: 16px;
-        /* Larger font size for readability */
-    }
-
-    .comment-content {
-        font-size: 16px;
-        /* Larger font size for readability */
-    }
-
-    .comment-form h3 {
-        font-size: 18px;
-        /* フォントサイズを少し大きくする */
-    }
-
-    .comment-form .form-group {
-        margin-bottom: 12px;
-        /* マージンを広げる */
-    }
-
-    .comment-form label {
-        font-size: 14px;
-        /* フォントサイズを少し大きくする */
-    }
-
-    .comment-form input[type="text"],
-    .comment-form textarea {
-        padding: 10px;
-        /* パディングを広げる */
-        font-size: 14px;
-        /* フォントサイズを少し大きくする */
-    }
-
-    .comment-form button {
-        padding: 8px 16px;
-        /* パディングを広げる */
-        font-size: 14px;
-        /* フォントサイズを少し大きくする */
-    }
+.btn-danger:hover {
+    background-color: #c82333;
 }
