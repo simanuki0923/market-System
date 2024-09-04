@@ -9,15 +9,17 @@
     max-width: 1200px;
     width: 100%;
     padding: 20px;
+    margin-left: 20%;
 }
 
 .product-detail__image {
     flex: 1;
-    margin-right: 20px;
+    margin-right: 10%;
 }
 
 .product-detail__image img {
-    width: 70%;
+    width: 100%;
+    /* 画像が親要素に合わせて調整される */
     height: auto;
     border-radius: 8px;
 }
@@ -65,7 +67,7 @@
 .action-buttons {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 30px;
     margin: 15px 0;
 }
 
@@ -75,11 +77,10 @@
     cursor: pointer;
     padding: 0;
     display: flex;
+    flex-direction: column;
+    /* アイコンと件数を縦に整列 */
     align-items: center;
-}
-
-.action-buttons .favorited img {
-    filter: sepia(100%) saturate(1000%) hue-rotate(-50deg);
+    /* 水平方向にセンタリング */
 }
 
 .action-buttons .iconstar,
@@ -88,13 +89,12 @@
     height: 30px;
 }
 
-.action-buttons .iconstar {
-    margin-right: 5px;
-}
-
-#favorite-count {
+.action-buttons #favorite-count,
+.action-buttons #comment-count {
     font-size: 18px;
     color: #000;
+    margin-top: 5px;
+    /* アイコンと件数の間にスペースを追加 */
 }
 
 .purchase-button {
@@ -112,60 +112,4 @@
 
 .purchase-button:hover {
     background-color: #e03e00;
-}
-
-/* スマートフォン用のレスポンシブデザイン */
-@media screen and (max-width: 768px) {
-    .product-detail__container {
-        flex-direction: column;
-        padding: 15px;
-    }
-
-    .product-detail__image {
-        margin-right: 0;
-        margin-bottom: 20px;
-    }
-
-    .product-detail__info h2 {
-        font-size: 24px;
-        margin-bottom: 8px;
-    }
-
-    .product-detail__info .price {
-        font-size: 22px;
-    }
-
-    .product-detail__info p {
-        font-size: 14px;
-    }
-
-    .product-detail__info .category,
-    .product-detail__info .condition,
-    .product-detail__info .brand,
-    .product-detail__info .description {
-        font-size: 18px;
-    }
-
-    .action-buttons {
-        justify-content: flex-start;
-        margin: 10px 0;
-        gap: 10px;
-        flex-direction: row;
-    }
-
-    .action-buttons .iconstar,
-    .action-buttons .iconcomment {
-        width: 25px;
-        height: 25px;
-    }
-
-    #favorite-count {
-        font-size: 16px;
-    }
-
-    .purchase-button {
-        font-size: 18px;
-        padding: 12px;
-        width: 100%;
-    }
 }
