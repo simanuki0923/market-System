@@ -9,33 +9,39 @@
     <main class="contact-form__main">
 
         <div class="edit-profile">
+
             @if($user)
                 <h2>プロフィール設定</h2>
-                <div class="file-container">
-                    <img src="{{ $user->icon_url ?? asset('img/default-icon.png') }}" alt="{{ $user->name }}のアイコン">
-                    <label for="icon" class="file-label">アイコン画像を選択</label>
-                    <input type="file" id="icon" name="icon" style="display:none;" onchange="previewImage(event);">
-                </div>
+
                 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
 
+                    <div class="file-container">
+                        <!-- Display the current icon or a default icon -->
+                        <img src="{{ $user->profile && $user->profile->icon_image_path ? asset('storage/' . $user->profile->icon_image_path) : asset('img/default-icon.png') }}" alt="{{ $user->name }}のアイコン">
+                        <label for="icon_image" class="file-label">アイコン画像を選択</label>
+                        <input type="file" id="icon_image" name="icon_image" style="display:none;" onchange="previewImage(event);">
+                    </div>
+
                     <label>ユーザー名</label>
-                    <input type="text" name="name" value="{{ old('name', $user->name) }}">
+                    <input type="text" name="name" value="{{ old('name', $user->profile->name ?? '') }}" required>
 
                     <label>郵便番号</label>
-                    <input type="text" name="postal_code" value="{{ old('postal_code', $user->postal_code) }}">
+                    <input type="text" name="postal_code" value="{{ old('postal_code', $user->profile->postal_code ?? '') }}">
 
                     <label>住所</label>
-                    <input type="text" name="address" value="{{ old('address', $user->address) }}">
+                    <input type="text" name="address" value="{{ old('address', $user->profile->address ?? '') }}">
 
                     <label>建物名</label>
-                    <input type="text" name="building" value="{{ old('building', $user->building) }}">
+                    <input type="text" name="building" value="{{ old('building', $user->profile->building ?? '') }}">
 
                     <button type="submit">更新</button>
                 </form>
+
             @else
                 <p>ユーザー情報が見つかりません。</p>
             @endif
+
         </div>
 
     </main>
@@ -49,8 +55,8 @@
                 document.querySelector('.file-container img').src = e.target.result;
             }
             reader.readAsDataURL(file);
-          }
-      }
+        }
+    }
     </script>
 
 @endsection
