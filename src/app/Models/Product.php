@@ -35,9 +35,9 @@ class Product extends Model
         return $this->favorites()->count();
     }
 
-    public function isFavoritedBy($userId)
+    public function getCommentsCountAttribute()
     {
-        return $this->favorites()->where('user_id', $userId)->exists();
+        return $this->comments()->count();
     }
 
     public function purchases()
