@@ -8,11 +8,13 @@
     <main class="contact-form__main">
         <div class="profile-section">
             <div class="profile-icon">
-                <img src="{{ asset('img/星.png') }}" alt="User Icon">
+                <!-- Display the user profile icon or a default icon -->
+                <img src="{{ $user->profile && $user->profile->icon_image_path ? asset('storage/' . $user->profile->icon_image_path) : asset('img/sample.jpg') }}" alt="{{ $user_name ?? $user->name }}のアイコン">
             </div>
             <div class="profile-info">
                 <div class="profile-info-content">
-                    <p class="user-name">ユーザー名</p>
+                    <!-- Display the user's name -->
+                    <p class="user-name">{{ $user_name }}</p>
                 </div>
                 <a href="{{ route('profile.edit') }}" class="edit-profile-btn">プロフィール編集</a>
             </div>
@@ -69,7 +71,7 @@
             document.getElementById(hideLinkId).setAttribute('aria-pressed', 'false');
         }
 
-        // デフォルトで「出品した商品」を表示
+        // Default display of listed products
         document.getElementById('listedProducts').style.display = 'grid';
         document.getElementById('purchasedProducts').style.display = 'none';
     </script>
