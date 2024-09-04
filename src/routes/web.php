@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\MypageController;
+use App\Http\Controllers\ListController;
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 /*
@@ -17,7 +19,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 |
 */
 // ホーム画面ページ
-Route::get('/', [ProductController::class, 'list'])->name('product.list');
+Route::get('/', [ListController::class, 'list'])->name('product.list');
 
 // 商品詳細ページ
 Route::get('/product/{id}', [ProductController::class, 'product'])->name('product');
@@ -43,6 +45,7 @@ Route::middleware('auth')->group(function () {
     // コメントページ
     Route::get('/product/{id}/comments', [ProductController::class, 'showComments'])->name('product.comments');
     Route::post('/product/{id}/comments', [ProductController::class, 'storeComment'])->name('product.storeComment');
+    Route::delete('/product/{productId}/comments/{commentId}', [ProductController::class, 'destroyComment'])->name('product.destroyComment');
 
     // 購入ページ
     Route::get('/purchase', [ProductController::class, 'purchase'])->name('purchase');
@@ -52,11 +55,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/address/update', [ProductController::class, 'updateAddress'])->name('address.update');
 
     // マイページ
-    Route::get('/mypage', [ProductController::class, 'mypage'])->name('mypage');
+    Route::get('/mypage', [MypageController::class, 'mypage'])->name('mypage');
 
     // プロフィール編集ページ
-    Route::get('/profile', [ProductController::class, 'edit'])->name('profile.edit');
-    Route::post('/profile/update', [ProductController::class, 'update'])->name('profile.update');
+    Route::get('/profile', [MypageController::class, 'edit'])->name('profile.edit');
+    Route::post('/profile/update', [MypageController::class, 'update'])->name('profile.update');
 
     // 出品ページ
     Route::get('/sell', [TestController::class, 'sell'])->name('sell');
