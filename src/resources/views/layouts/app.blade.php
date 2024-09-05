@@ -29,7 +29,7 @@
                 <a href="/login">ログイン</a>
                 <a href="/register">会員登録</a>
             @endif
-            <a href="/sell" class="button">出品</a>
+            <a href="{{ route('sell.show') }}" class="button">出品</a>
         </nav>
     </header>
     <main>

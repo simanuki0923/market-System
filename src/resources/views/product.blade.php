@@ -9,7 +9,7 @@
     <article class="product-detail__container">
         <figure class="product-detail__image">
             @if ($product->image_url)
-                <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}">
+                <img src="{{ asset('storage/' . $product->image_url) }}" alt="{{ $product->name }}">
             @else
                 <figcaption>画像がありません</figcaption>
             @endif
@@ -34,7 +34,9 @@
                 </button>
             </aside>
 
-            <button class="purchase-button">購入</button>
+            <button class="purchase-button" onclick="window.location='{{ route('purchase', ['product_id' => $product->id]) }}'">
+            購入
+            </button>
             
             <div class="product-info-item">
                 <strong>商品説明:</strong>

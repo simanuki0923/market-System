@@ -22,7 +22,7 @@ class ListController extends Controller
             return [
                 'id' => $favorite->product->id,
                 'name' => $favorite->product->name,
-                'image_url' => $favorite->product->image_url,
+                'image_url' => $product->image_url ? asset('storage/' . $product->image_url) : 'default-image.jpg',
                 'link' => route('product', ['id' => $favorite->product->id]),
                 'category' => $favorite->product->category->name ?? 'Uncategorized',
                 'brand' => $favorite->product->brand,

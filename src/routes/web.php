@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ListController;
+use App\Http\Controllers\SellController;
+use App\Http\Controllers\PurchaseController;
+
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
 /*
@@ -48,11 +50,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/product/{productId}/comments/{commentId}', [ProductController::class, 'destroyComment'])->name('product.destroyComment');
 
     // 購入ページ
-    Route::get('/purchase', [ProductController::class, 'purchase'])->name('purchase');
+    Route::get('/purchase', [PurchaseController::class, 'purchase'])->name('purchase');
 
-    // 住所登録ページ
-    Route::get('/address', [ProductController::class, 'editAddress'])->name('address.edit');
-    Route::post('/address/update', [ProductController::class, 'updateAddress'])->name('address.update');
+    // 配送先変更ページ
+    Route::get('/purchase/address/edit', [PurchaseController::class, 'editAddress'])->name('purchase.address.edit');
+
+    // 配送先変更処理
+    Route::post('/purchase/address/update', [PurchaseController::class, 'updateAddress'])->name('purchase.address.update');
 
     // マイページ
     Route::get('/mypage', [MypageController::class, 'mypage'])->name('mypage');
@@ -61,6 +65,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [MypageController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [MypageController::class, 'update'])->name('profile.update');
 
-    // 出品ページ
-    Route::get('/sell', [TestController::class, 'sell'])->name('sell');
+    // 出品フォーム表示
+    Route::get('/sell', [SellController::class, 'showForm'])->name('sell.show');
+
+    // 出品データの保存
+    Route::post('/sell', [SellController::class, 'store'])->name('sell.store');
+    
 });
