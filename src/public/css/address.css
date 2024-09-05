@@ -1,87 +1,59 @@
-body,
-html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background-color: #f5f5f5;
-    /* Set background color for the entire page */
-}
-
-.contact-form__main {
+.edit-address__main {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    min-height: 80vh;
-    background-color: #f5f5f5;
-}
-
-.edit-address {
-    background-color: #ffffff;
+    justify-content: center;
+    height: 80vh;
     padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
-    width: 100%;
 }
 
-.edit-address label {
-    display: block;
+/* <h2>のスタイル */
+.edit-address__main h2 {
+    color: black;
     font-weight: bold;
-    margin-bottom: 8px;
-    color: #333333;
+    font-size: 30px;
+    margin-bottom: 70px;
+    margin-right: 100px;
 }
 
-.edit-address input[type="text"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    font-size: 14px;
+/* <label>のスタイル */
+.edit-address__main label {
+    color: black;
+    font-weight: bold;
+    font-size: 20px;
+    display: block;
 }
 
-.edit-address input[type="text"]:focus {
-    border-color: #ff4d4d;
-    /* Red border on focus */
-    outline: none;
-}
-
-.edit-address button[type="submit"] {
-    width: 100%;
-    padding: 10px;
-    background-color: #ff4d4d;
-    /* Red background for the button */
-    color: #ffffff;
-    border: none;
-    border-radius: 4px;
+/* 入力枠のスタイル */
+.edit-address__main input[type="text"] {
+    border: 1px solid black;
+    padding: 15px;
+    width: 600px;
+    max-width: 600px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
     font-size: 16px;
+    margin-bottom: 50px;
+
+}
+
+/* <button>のスタイル */
+.edit-address__main button {
+    border: 2px solid #fe4545;
+    background-color: #fe4545;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+    width: 100%;
+    max-width: 600px;
 }
 
-.edit-address button[type="submit"]:hover {
-    background-color: #e60000;
-    /* Darker red on hover */
-}
-
-@media screen and (max-width: 768px) {
-    .edit-address {
-        padding: 15px;
-        max-width: 90%;
-    }
-
-    .edit-address label {
-        font-size: 14px;
-    }
-
-    .edit-address input[type="text"] {
-        font-size: 13px;
-        padding: 8px;
-    }
-
-    .edit-address button[type="submit"] {
-        font-size: 14px;
-        padding: 8px;
-    }
+/* <button>のホバー効果 */
+.edit-address__main button:hover {
+    background-color: red;
+    border-color: red;
 }
