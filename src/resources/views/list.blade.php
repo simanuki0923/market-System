@@ -18,7 +18,7 @@
                     @foreach ($recommendedProducts as $product)
                         <li class="product-item">
                             <a href="{{ route('product', ['id' => $product->id]) }}">
-                                <img src="{{ $product->image_url ? asset($product->image_url) : asset('img/no-image.png') }}" alt="{{ $product->name }}">
+                                <img src="{{ $product->image_url ? asset('storage/' . $product->image_url) : asset('storage/img/no-image.png') }}" alt="{{ $product->name }}">
                             </a>
                         </li>
                     @endforeach
@@ -31,7 +31,7 @@
                     @foreach ($myList as $product)
                         <li class="product-item">
                             <a href="{{ $product['link'] }}">
-                                <img src="{{ $product['image_url'] ? asset($product['image_url']) : asset('img/no-image.png') }}" alt="{{ $product['name'] }}">
+                                <img src="{{ $product['image_url'] ? asset('storage/' . $product['image_url']) : asset('storage/img/no-image.png') }}" alt="{{ $product['name'] }}">
                             </a>
                         </li>
                     @endforeach
@@ -65,6 +65,17 @@
                     },
                     body: JSON.stringify({})
                 }).then(response => response.json())
+                  .then(data => {
+                      if (data.success) {
+                          alert('商品がマイリストに追加されました');
+                      } else {
+                          alert('エラーが発生しました');
+                      }
+                  })
+                  .catch(error => {
+                      console.error('エラー:', error);
+                      alert('エラーが発生しました');
+                  });
             });
         });
     </script>

@@ -14,10 +14,7 @@ class Product extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'name',
-        'description',
-        'price',
-        'image_url',
+        'user_id', 'name', 'description', 'price', 'category_id', 'condition', 'image_url'
     ];
 
     public function comments()
@@ -42,6 +39,11 @@ class Product extends Model
 
     public function purchases()
     {
-        return $this->hasMany(Purchase::class);
+        return $this->hasMany(Purchase::class, 'product_id');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
     }
 }
