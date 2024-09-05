@@ -44,7 +44,7 @@
                     <p>クレジットカード</p> <!-- Adjust this to reflect the actual payment method -->
                 </div>
             </section>
-
+            <form action="{{ route('payment.create') }}" method="GET">
             <button type="submit" class="purchase-button">購入を確定する</button>
         </div>
     </main>

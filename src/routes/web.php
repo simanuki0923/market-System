@@ -7,6 +7,7 @@ use App\Http\Controllers\MypageController;
 use App\Http\Controllers\ListController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\PaymentController;
 
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
@@ -70,5 +71,12 @@ Route::middleware('auth')->group(function () {
 
     // 出品データの保存
     Route::post('/sell', [SellController::class, 'store'])->name('sell.store');
+
+    // payment決済実装
+    Route::prefix('payment')->name('payment.')->group(function () {
+        Route::get('/create', [PaymentController::class, 'create'])->name('create');
+        Route::post('/store', [PaymentController::class, 'store'])->name('store');
+        Route::get('/done', [PaymentController::class, 'done'])->name('done');
+    });
     
 });
