@@ -35,8 +35,8 @@ nav a {
 }
 
 nav a.button {
-    background-color: red;
-    color: white;
+    background-color: white;
+    color: black;
     padding: 5px 10px;
     border-radius: 5px;
     font-weight: 500;
@@ -45,7 +45,7 @@ nav a.button {
 }
 
 nav a.button:hover {
-    background-color: red;
+    background-color: white;
 }
 
 nav form button {
