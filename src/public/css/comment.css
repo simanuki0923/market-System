@@ -159,3 +159,74 @@
 .btn-danger:hover {
     background-color: #c82333;
 }
+
+@media (max-width: 768px) {
+    .product-detail__container {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .product-detail__image {
+        max-width: 100%;
+        width: 100%;
+        text-align: center;
+    }
+
+    .product-detail__image img {
+        width: 80%;
+        height: auto;
+        margin: 0 auto;
+    }
+
+    .product-detail__info {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+    }
+
+    .product-detail__actions {
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .product-detail__actions button img {
+        width: 35px;
+        height: 35px;
+    }
+
+    .product-detail__comments h2 {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    .comment {
+        margin-bottom: 10px;
+        padding: 10px;
+        border-radius: 5px;
+        max-width: 100%;
+    }
+
+    .comment p {
+        margin-left: 0;
+        padding: 10px;
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .product-detail__comment-form {
+        width: 100%;
+        align-items: center;
+    }
+
+    .product-detail__comment-form textarea {
+        width: 100%;
+    }
+
+    .product-detail__comment-form button {
+        align-self: center;
+        margin-top: 20px;
+    }
+}

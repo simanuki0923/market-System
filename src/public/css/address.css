@@ -1,22 +1,50 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    width: 100%;
+    background-color: black;
+    height: 50px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
 .edit-address__main {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 80vh;
+    height: calc(100% - 50px);
     padding: 20px;
+    width: 100%;
+    margin-top: 700px;
 }
 
-/* <h2>のスタイル */
 .edit-address__main h2 {
     color: black;
     font-weight: bold;
     font-size: 30px;
     margin-bottom: 70px;
+    text-align: center;
     margin-right: 100px;
 }
 
-/* <label>のスタイル */
 .edit-address__main label {
     color: black;
     font-weight: bold;
@@ -24,20 +52,16 @@
     display: block;
 }
 
-/* 入力枠のスタイル */
 .edit-address__main input[type="text"] {
     border: 1px solid black;
     padding: 15px;
     width: 600px;
     max-width: 600px;
     box-sizing: border-box;
-    margin-bottom: 10px;
-    font-size: 16px;
     margin-bottom: 50px;
-
+    font-size: 16px;
 }
 
-/* <button>のスタイル */
 .edit-address__main button {
     border: 2px solid #fe4545;
     background-color: #fe4545;
@@ -52,8 +76,39 @@
     max-width: 600px;
 }
 
-/* <button>のホバー効果 */
 .edit-address__main button:hover {
     background-color: red;
     border-color: red;
+}
+
+@media (max-width: 768px) {
+    .edit-address__main {
+        padding: 10px;
+        margin-top: 550px;
+        /* Adjusted margin for smaller screens */
+    }
+
+    .edit-address__main h2 {
+        font-size: 24px;
+        margin-bottom: 40px;
+        margin-right: 0;
+    }
+
+    .edit-address__main label {
+        font-size: 18px;
+    }
+
+    .edit-address__main input[type="text"] {
+        width: 100%;
+        /* Ensure inputs take full width */
+        padding: 10px;
+        margin-bottom: 30px;
+    }
+
+    .edit-address__main button {
+        width: 100%;
+        /* Ensure button takes full width */
+        padding: 10px;
+        font-size: 16px;
+    }
 }

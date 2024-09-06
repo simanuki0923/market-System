@@ -1,15 +1,17 @@
 header {
     background-color: black;
-    height: 50px;
-    padding: 0 20px;
+    width: 100%;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: relative;
+    margin-bottom: 50px;
 }
 
 header img {
     height: 20px;
+    margin-left: 10px;
+    /* Align the logo to the left with a margin */
 }
 
 header form {
@@ -17,96 +19,151 @@ header form {
     text-align: center;
 }
 
-header form input[type="text"] {
-    width: 80%;
+header input[type="text"] {
+    border: 1px solid white;
+    height: 30px;
+    /* Adjust size of search box */
+    width: 50%;
+    background-color: white;
+    color: black;
+    padding: 0 5px;
+    box-sizing: border-box;
+}
+
+header .header__nav {
+    margin-right: 10px;
+}
+
+.header__nav .nav__list {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    margin: 0;
+}
+
+.header__nav .nav__item {
+    margin: 0 10px;
+}
+
+.header__nav .nav__item-button,
+.header__nav .nav__item-link {
+    color: white;
+    font-size: 15px;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+}
+
+.header__nav .nav__item-link.nav__item-link-sell {
+    color: black;
+    background-color: white;
     padding: 5px;
 }
 
-nav {
-    display: flex;
-    align-items: center;
+/* Additional styling for hover effect (optional) */
+.header__nav .nav__item-link:hover,
+.header__nav .nav__item-button:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    /* Light gray background on hover */
 }
 
-nav a {
-    color: white;
-    font-weight: 500;
-    margin-left: 20px;
-    text-decoration: none;
-}
-
-nav a.button {
-    background-color: white;
-    color: black;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: 500;
-    text-decoration: none;
-    display: inline-block;
-}
-
-nav a.button:hover {
-    background-color: white;
-}
-
-nav form button {
-    color: white;
-    font-weight: 500;
-    background: none;
-    border: none;
-    margin-left: 20px;
-}
-
-main {
-    padding: 20px;
-}
-
-footer {
-    text-align: center;
-    padding: 10px;
-}
-
-
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
     header {
-        height: auto;
         flex-direction: column;
         align-items: center;
         padding: 10px;
+        margin-bottom: 20px;
     }
 
     header img {
         height: 30px;
+        margin-left: 0;
     }
 
     header form {
-        width: 100%;
         text-align: center;
+        margin: 10px 0;
+    }
+
+    header input[type="text"] {
+        width: 200px;
+        /* 検索枠の幅を設定 */
         margin-top: 10px;
+        border: 1px solid white;
+        background-color: white;
+        color: black;
+        padding: 0 5px;
+        box-sizing: border-box;
     }
 
-    header form input[type="text"] {
+    header .header__nav {
+        margin-right: 0;
+        margin-top: 10px;
         width: 100%;
-    }
-
-    nav {
+        /* ナビゲーションの幅を100%に設定 */
         display: flex;
-        flex-direction: row;
+        flex-wrap: wrap;
+        /* アイテムが幅を超える場合に折り返す */
         justify-content: center;
+        /* 中央に揃える */
+    }
+
+    .header__nav .nav__list {
+        display: flex;
+        flex-wrap: wrap;
+        /* アイテムが幅を超える場合に折り返す */
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
+    .header__nav .nav__item {
+        margin: 5px;
+        /* アイテム間のスペース */
+    }
+
+    .header__nav .nav__item-button,
+    .header__nav .nav__item-link {
+        color: black;
+        font-size: 12px;
+        text-decoration: none;
+        background-color: white;
+        /* 背景色を白に */
+        border: 1px solid black;
+        /* 枠線を黒に */
+        border-radius: 3px;
+        padding: 5px 10px;
+        /* 内側の余白を調整 */
+        width: 100px;
+        /* 幅を100pxに設定 */
+        box-sizing: border-box;
+        /* ボックスサイズを調整 */
+        text-align: center;
+        /* テキストを中央に揃える */
+    }
+
+    .header__nav .nav__item-link.nav__item-link-sell {
+        color: black;
+        background-color: white;
+        border: 1px solid black;
+        /* 背景色と枠線を黒に */
+        padding: 5px 10px;
+        /* 内側の余白を調整 */
+        font-size: 12px;
+        width: 100px;
+        /* 幅を100pxに設定 */
+        box-sizing: border-box;
+        /* ボックスサイズを調整 */
+        text-align: center;
+        /* テキストを中央に揃える */
+    }
+
+    /* アイテムが折り返さないようにするためのスタイル */
+    .header__nav .nav__list {
+        flex-direction: row;
+        /* 1行に横並びにする */
         align-items: center;
-        width: 100%;
-        margin-top: 10px;
-        white-space: nowrap;
-    }
-
-    nav a {
-        margin: 0 10px;
-        font-size: 14px;
-        white-space: nowrap;
-    }
-
-    nav a.button {
-        padding: 10px;
-        font-size: 14px;
-        white-space: nowrap;
+        /* 中央に揃える */
     }
 }

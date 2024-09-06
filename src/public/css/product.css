@@ -19,7 +19,6 @@
 
 .product-detail__image img {
     width: 100%;
-    /* 画像が親要素に合わせて調整される */
     height: auto;
     border-radius: 8px;
 }
@@ -44,7 +43,7 @@
 }
 
 .product-detail__info .price {
-    font-size: 24px;
+    font-size: 35px;
     font-weight: bold;
     color: #000;
 }
@@ -112,4 +111,55 @@
 
 .purchase-button:hover {
     background-color: #e03e00;
+}
+
+@media (max-width: 768px) {
+    .product-detail__container {
+        margin-left: 0;
+        padding: 10px;
+        flex-direction: column;
+        margin-right: 30px;
+
+    }
+
+    .product-detail__image {
+        margin-right: 0;
+        margin-bottom: 20px;
+        /* Add space below the image */
+    }
+
+    .product-detail__info {
+        flex: none;
+        text-align: center;
+        /* Center the text */
+    }
+
+    .product-detail__info h2,
+    .product-detail__info p,
+    .product-detail__info .price,
+    .product-detail__info .brand,
+    .product-detail__info .category,
+    .product-detail__info .condition,
+    .product-detail__info .description {
+        margin-bottom: 15px;
+        /* Add space between text elements */
+    }
+
+    .action-buttons {
+        flex-direction: row;
+        align-items: center;
+        gap: 50px;
+        margin: 15px 0;
+        width: 100%;
+        justify-content: center;
+
+    }
+
+    .purchase-button {
+        width: 100%;
+        /* Make the button full-width */
+        max-width: 400px;
+        margin-bottom: 20px;
+        /* Optional: Set a max-width for the button */
+    }
 }
