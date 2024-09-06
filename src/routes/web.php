@@ -8,6 +8,7 @@ use App\Http\Controllers\ListController;
 use App\Http\Controllers\SellController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\SearchController;
 
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
@@ -23,6 +24,9 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 */
 // ホーム画面ページ
 Route::get('/', [ListController::class, 'list'])->name('product.list');
+
+//検索ソート機能
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 // 商品詳細ページ
 Route::get('/product/{id}', [ProductController::class, 'product'])->name('product');
@@ -78,5 +82,8 @@ Route::middleware('auth')->group(function () {
         Route::post('/store', [PaymentController::class, 'store'])->name('store');
         Route::get('/done', [PaymentController::class, 'done'])->name('done');
     });
+
+    Route::get('/edit-payment-method', [PurchaseController::class, 'editPaymentMethod'])->name('edit.payment.method');
+    Route::post('/update-payment-method', [PurchaseController::class, 'updatePaymentMethod'])->name('update.payment.method');
     
 });
