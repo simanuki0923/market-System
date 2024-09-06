@@ -31,7 +31,7 @@
                     @foreach ($myList as $product)
                         <li class="product-item">
                             <a href="{{ $product['link'] }}">
-                                <img src="{{ $product['image_url'] ? asset('storage/' . $product['image_url']) : asset('storage/img/no-image.png') }}" alt="{{ $product['name'] }}">
+                                <img src="{{ $product['image_url'] }}" alt="{{ $product['name'] }}">
                             </a>
                         </li>
                     @endforeach
