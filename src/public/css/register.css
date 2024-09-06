@@ -68,3 +68,72 @@ main {
 .login__link a {
     color: blue;
 }
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px;
+        text-align: center;
+    }
+
+    header a {
+        margin-left: 0;
+        margin-right: 10px;
+        /* Adjust margin for better spacing */
+    }
+
+    header img {
+        width: 150px;
+        /* Reduce image size for smaller screens */
+    }
+
+    main {
+        height: auto;
+        /* Adjust height to fit content */
+        padding: 10px;
+    }
+
+    .register__content {
+        text-align: center;
+        /* Center-align text on smaller screens */
+        padding: 10px;
+        /* Add padding for better spacing */
+    }
+
+    .register-form__heading h2 {
+        font-size: 24px;
+        /* Adjust font size for smaller screens */
+        margin-top: 20px;
+    }
+
+    .form__label--item {
+        font-size: 14px;
+        /* Adjust font size for smaller screens */
+    }
+
+    .form__input--text input {
+        width: 100%;
+        /* Make input fields full-width on smaller screens */
+        max-width: 400px;
+        /* Maintain maximum width */
+        margin-bottom: 20px;
+        /* Reduce margin for better spacing */
+    }
+
+    .form__button-submit {
+        width: 100%;
+        /* Make button full-width on smaller screens */
+        max-width: 400px;
+        /* Maintain maximum width */
+    }
+
+    .login__link {
+        text-align: center;
+        margin-top: 10px;
+        /* Reduce margin for better spacing */
+    }
+
+    .login__link a {
+        font-size: 14px;
+        /* Adjust font size for smaller screens */
+    }
+}

@@ -1,6 +1,9 @@
 .purchase-form__main {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    /* 中央に配置 */
+    align-items: center;
+    /* 縦方向も中央に配置 */
     padding: 20px;
     height: 100vh;
     box-sizing: border-box;
@@ -9,7 +12,14 @@
 .left-side {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 40%;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    width: 30%;
 }
 
 .product-info {
@@ -49,7 +59,6 @@
     color: black;
     margin-bottom: 100px;
     margin-left: 20px;
-    
 }
 
 .change-link {
@@ -63,22 +72,14 @@
     text-decoration: underline;
 }
 
-.right-side {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    width: 40%;
-}
-
 .price-info {
     border: 2px solid #ccc;
-    border-radius: 8px;
     padding: 20px;
     background-color: #f9f9f9;
-    width: 500px;
-    height: 400px;
+    width: 400px;
+    height: 350px;
     margin-bottom: 20px;
-    margin-right: 100px;
+    margin-right: 20px;
 }
 
 .info-item {
@@ -104,13 +105,79 @@
     color: white;
     font-size: 20px;
     border: none;
-    padding: 10px 20px;
+    padding: 10px;
     cursor: pointer;
-    width: 100%;
-    max-width: 500px;
+    width: 400px;
     height: 60px;
     box-sizing: border-box;
     text-align: center;
     margin-top: 20px;
-    margin-right: 100px;
+    margin-right: 20px;
+}
+
+@media screen and (max-width: 768px) {
+    .purchase-form__main {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .left-side,
+    .right-side {
+        width: 100%;
+        margin-bottom: 20px;
+        /* 各セクションの間にスペースを追加 */
+    }
+
+    .right-side {
+        align-items: center;
+        /* 右側を中央に配置 */
+    }
+
+    .product-info {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .product-image img {
+        max-width: 150px;
+        margin-left: 70px;
+        margin-top: 150px;
+    }
+
+    .product-details {
+        font-size: 14px;
+    }
+
+    .payment-shipping-info {
+        margin-top: 10px;
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .left-side .info-label,
+    .info-label {
+        font-size: 14px;
+        margin-bottom: 5px;
+        margin-left: 0;
+    }
+
+    .change-link {
+        margin-right: 0;
+    }
+
+    .price-info {
+        width: 100%;
+        margin-right: 0;
+        padding: 10px;
+    }
+
+    .purchase-button {
+        width: 360px;
+        margin-right: 0;
+        margin-top: 10px;
+    }
 }

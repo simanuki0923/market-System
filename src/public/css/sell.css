@@ -124,3 +124,43 @@
     margin: 20px 0;
     padding: 0;
 }
+
+@media (max-width: 768px) {
+    .sell-form__main {
+        padding: 10px;
+        /* Reduce padding for smaller screens */
+    }
+
+    .sell-form__main h2 {
+        font-size: 24px;
+        /* Reduce font size for headings */
+        margin-bottom: 20px;
+        /* Adjust margin for better spacing */
+    }
+
+    .sell-form__input,
+    .sell-form__textarea {
+        width: 100%;
+        /* Ensure inputs take full width */
+        max-width: none;
+        /* Remove max-width for smaller screens */
+    }
+
+    .sell-form__file-wrapper,
+    .sell-form__file-label,
+    .sell-form__button {
+        width: 100%;
+        /* Ensure elements take full width */
+        max-width: none;
+        /* Remove max-width */
+    }
+
+    .sell-form__file-label {
+        margin-left: 0;
+        /* Remove left margin */
+    }
+
+    legend.sell-form__legend {
+        width: 300px;
+    }
+}
