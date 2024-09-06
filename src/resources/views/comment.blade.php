@@ -9,7 +9,7 @@
         <div class="product-detail__container">
             <!-- Left Half: Product Image -->
             <section class="product-detail__image">
-                <img src="{{ asset($product->image_url) ?? asset('img/sample.jpg') }}" alt="{{ $product->name ?? '商品名' }}">
+                <img src="{{ $product->image_url ? asset('storage/' . $product->image_url) : asset('storage/img/no-image.png') }}" alt="{{ $product->name }}">
             </section>
 
             <!-- Right Half: Product Information -->
