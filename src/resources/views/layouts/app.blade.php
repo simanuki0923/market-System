@@ -15,22 +15,24 @@
         <a href="/">
             <img src="{{ asset('img/logo.svg') }}" alt="COACHTECHロゴ">
         </a>
-        <form action="/search" method="GET">
-            <input type="text" name="search" placeholder="何をお探しですか？">
+        <form action="{{ route('search') }}" method="GET">
+             <input type="text" name="search" placeholder="何をお探しですか？" value="{{ request('search') }}">
         </form>
-        <nav>
-            @if (Auth::check())
-                <a href="/mypage">マイページ</a>
-                <form action="/logout" method="post">
-                    @csrf
-                    <button type="submit" class="header-nav__button">ログアウト</button>
-                </form>
-            @else
-                <a href="/login">ログイン</a>
-                <a href="/register">会員登録</a>
-            @endif
-            <a href="{{ route('sell.show') }}" class="button">出品</a>
-        </nav>
+            <nav class="header__nav">
+                <ul class="nav__list">
+                    @if (Auth::check())
+                        <li class="nav__item"><a href="/mypage" class="nav__item-link">マイページ</a></li>
+                        <form action="/logout" method="post">
+                            @csrf
+                            <li class="nav__item"><button type="submit" class="nav__item-button">ログアウト</button></li>
+                        </form>
+                    @else
+                        <li class="nav__item"><a href="/login" class="nav__item-link">ログイン</a></li>
+                        <li class="nav__item"><a href="/register" class="nav__item-link">会員登録</a></li>
+                    @endif
+                    <li class="nav__item"><a href="/sell" class="nav__item-link nav__item-link-sell">出品</a></li>
+                </ul>
+            </nav>
     </header>
     <main>
         @yield('content')
