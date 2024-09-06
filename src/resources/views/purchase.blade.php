@@ -20,7 +20,7 @@
             <section class="payment-shipping-info">
                 <div class="info-item">
                     <div class="info-label">支払い方法</div>
-                    <a href="#" class="change-link">変更する</a>
+                    <a href="{{ route('edit.payment.method') }}" class="change-link">変更する</a>
                 </div>
                 <div class="info-item">
                     <div class="info-label">配送先</div>
@@ -41,11 +41,18 @@
                 </div>
                 <div class="info-item">
                     <div class="info-label">支払い方法</div>
-                    <p>クレジットカード</p> <!-- Adjust this to reflect the actual payment method -->
+                    <p>
+                        @if (isset($payment))
+                            {{ $payment->payment_method == 'credit_card' ? 'クレジットカード' : ($payment->payment_method == 'convenience_store' ? 'コンビニ払い' : '銀行振込') }}
+                        @else
+                            未選択
+                        @endif
+                    </p>
                 </div>
             </section>
             <form action="{{ route('payment.create') }}" method="GET">
-            <button type="submit" class="purchase-button">購入を確定する</button>
+                <button type="submit" class="purchase-button">購入を確定する</button>
+            </form>
         </div>
     </main>
 @endsection
