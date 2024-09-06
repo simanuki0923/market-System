@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Payment;
 
 class PurchaseController extends Controller
 {
@@ -18,8 +19,9 @@ class PurchaseController extends Controller
         }
 
         $profile = Auth::user()->profile;
+        $payment = Auth::user()->payment; // Fetch the payment details
 
-        return view('purchase', compact('product', 'profile'));
+        return view('purchase', compact('product', 'profile', 'payment'));
     }
 
     public function editAddress()
@@ -52,5 +54,38 @@ class PurchaseController extends Controller
         ]);
 
         return redirect()->route('purchase')->with('status', '住所が更新されました');
+    }
+
+    public function editPaymentMethod()
+    {
+        $user = Auth::user();
+        $payment = $user->payment; // Assuming a user has one payment method
+
+        if (!$payment) {
+            // Create a new payment method record if it doesn't exist
+            $payment = new Payment();
+        }
+
+        return view('payment', compact('payment'));
+    }
+
+    public function updatePaymentMethod(Request $request)
+    {
+        $request->validate([
+            'payment_method' => 'required|in:credit_card,convenience_store,bank_transfer',
+        ]);
+
+        $user = Auth::user();
+        $payment = $user->payment;
+
+        if (!$payment) {
+            $payment = new Payment();
+            $payment->user_id = $user->id;
+        }
+
+        $payment->payment_method = $request->payment_method;
+        $payment->save();
+
+        return redirect()->route('purchase')->with('status', '支払い方法が更新されました');
     }
 }
