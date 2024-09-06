@@ -12,14 +12,14 @@
 .left-side {
     display: flex;
     flex-direction: column;
-    width: 40%;
+    width: 100%;
 }
 
 .right-side {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    width: 30%;
+    width: 100%;
 }
 
 .product-info {
@@ -29,9 +29,9 @@
 }
 
 .product-image img {
-    max-width: 150px;
+    max-width: 300px;
+    width: 150px;
     height: auto;
-    margin-right: 70px;
 }
 
 .product-details {
@@ -65,7 +65,7 @@
     font-size: 16px;
     color: blue;
     text-decoration: none;
-    margin-right: 100px;
+
 }
 
 .change-link:hover {
@@ -125,24 +125,48 @@
     .right-side {
         width: 100%;
         margin-bottom: 20px;
-        /* 各セクションの間にスペースを追加 */
     }
 
     .right-side {
+        display: flex;
+        /* Ensure it can center content */
+        justify-content: center;
+        /* Center content horizontally */
         align-items: center;
-        /* 右側を中央に配置 */
+        /* Center content vertically if needed */
     }
 
     .product-info {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        /* Center product info items horizontally */
+    }
+
+    .product-image {
+        display: flex;
+        /* Make it a flex container */
+        justify-content: center;
+        /* Center the image horizontally */
+        width: 100%;
+        /* Ensure it takes the full width */
+        margin: 0 auto;
+        /* Center the container itself */
+
     }
 
     .product-image img {
         max-width: 150px;
-        margin-left: 70px;
-        margin-top: 150px;
-    }
+        width: auto;
+        /* Adjust width based on the container */
+        height: auto;
+        /* Maintain aspect ratio */
+        margin: 0;
+        /* Remove margins if any */
+        margin-bottom: 20x;
+                padding-top: 100px;
+                    /* Add some spacing if needed */
+        }
+    
 
     .product-details {
         font-size: 14px;
