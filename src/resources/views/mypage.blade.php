@@ -43,7 +43,7 @@
         @foreach ($purchasedProducts as $product)
             <article class="product-item">
                 <a href="{{ route('product', ['id' => $product['id']]) }}">
-                    <img src="{{ asset($product['image_url']) }}" alt="{{ $product['name'] }}">
+                    <img src="{{ $product['image_url'] ? asset('storage/' . $product['image_url']) : asset('storage/img/no-image.png') }}" alt="{{ $product['name'] }}">
                 </a>
             </article>
         @endforeach
