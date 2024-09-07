@@ -15,12 +15,16 @@
 .product-detail__image {
     flex: 1;
     margin-right: 10%;
+    display: flex;
 }
 
 .product-detail__image img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     border-radius: 8px;
+    max-width: 200px;
+    max-height: 250px;
 }
 
 .product-detail__info {
@@ -77,9 +81,7 @@
     padding: 0;
     display: flex;
     flex-direction: column;
-    /* アイコンと件数を縦に整列 */
     align-items: center;
-    /* 水平方向にセンタリング */
 }
 
 .action-buttons .iconstar,
@@ -93,7 +95,6 @@
     font-size: 18px;
     color: #000;
     margin-top: 5px;
-    /* アイコンと件数の間にスペースを追加 */
 }
 
 .purchase-button {
@@ -125,13 +126,18 @@
     .product-detail__image {
         margin-right: 0;
         margin-bottom: 20px;
-        /* Add space below the image */
+        justify-content: center;
+    }
+    
+    .product-detail__image img {
+        max-width: 100%;
+        height: auto;
+        max-height: 250px;
     }
 
     .product-detail__info {
         flex: none;
         text-align: center;
-        /* Center the text */
     }
 
     .product-detail__info h2,
@@ -142,7 +148,6 @@
     .product-detail__info .condition,
     .product-detail__info .description {
         margin-bottom: 15px;
-        /* Add space between text elements */
     }
 
     .action-buttons {
@@ -157,9 +162,7 @@
 
     .purchase-button {
         width: 100%;
-        /* Make the button full-width */
         max-width: 400px;
         margin-bottom: 20px;
-        /* Optional: Set a max-width for the button */
     }
 }
