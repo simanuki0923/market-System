@@ -11,12 +11,12 @@
             @csrf
 
             <fieldset class="sell-form__fieldset">
-    <legend class="sell-form__legend">商品画像</legend>
-    <input type="file" id="image" name="image" class="sell-form__input" aria-label="商品画像を選択">
-    <div class="sell-form__file-wrapper">
-        <label for="image" class="sell-form__file-label">画像を選択</label>
-    </div>
-</fieldset>
+                <legend class="sell-form__legend">商品画像</legend>
+                <input type="file" id="image" name="image" class="sell-form__input" aria-label="商品画像を選択">
+                <div class="sell-form__file-wrapper">
+                    <label for="image" class="sell-form__file-label">画像を選択</label>
+                </div>
+            </fieldset>
 
             <fieldset class="sell-form__fieldset">
                 <legend class="sell-form__legend">商品の詳細</legend>
