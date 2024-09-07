@@ -23,13 +23,13 @@
             <aside class="action-buttons">
                 <!-- Favorite Button -->
                 <button aria-label="お気に入り" id="favorite-button" data-product-id="{{ $product->id }}" class="{{ $isFavorited ? 'favorited' : '' }}">
-                    <img class="iconstar" src="{{ asset('img/星.png') }}" alt="お気に入りアイコン">
+                    <img class="iconstar" src="{{ asset('img/star.jpg') }}" alt="お気に入りアイコン">
                     <span id="favorite-count">{{ $product->favorites_count ?? 0 }}</span>
                 </button>
 
                 <!-- Comment Button -->
                 <button type="button" aria-label="コメントする" onclick="window.location='{{ route('product.comments', ['id' => $product->id]) }}'">
-                    <img class="iconcomment" src="{{ asset('img/吹き出し.png') }}" alt="コメントアイコン">
+                    <img class="iconcomment" src="{{ asset('img/comment.jpg') }}" alt="コメントアイコン">
                     <span id="comment-count">{{ $product->comments_count ?? 0 }}</span>
                 </button>
             </aside>
