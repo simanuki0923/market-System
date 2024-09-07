@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-    <main class="edit-address__main">
+      <main class="edit-address__main">
         <h2>住所の変更</h2>
         <form action="{{ route('purchase.address.update') }}" method="POST" class="address-form">
             @csrf
@@ -25,7 +25,7 @@
                 <input type="text" name="building" id="building" value="{{ $profile->building ?? '' }}">
             <button type="submit">更新する</button>
         </form>
-    </main>
+      </main>
     </header>
 </body>
 </html>
