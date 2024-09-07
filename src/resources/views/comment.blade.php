@@ -21,11 +21,11 @@
                 <!-- Favorite and Comment Buttons -->
                 <div class="product-detail__actions">
                     <button class="favorite-button {{ $isFavorited ? 'favorited' : '' }}" data-product-id="{{ $product->id }}">
-                        <img class="iconstar" src="{{ asset('img/星.png') }}" alt="お気に入り">
+                        <img class="iconstar" src="{{ asset('img/star.jpg') }}" alt="お気に入り">
                         <span class="favorite-count">{{ $product->favorites_count }}</span>
                     </button>
                     <button type="button" onclick="window.location='{{ route('product.comments', ['id' => $product->id]) }}'">
-                        <img class="iconcomment" src="{{ asset('img/吹き出し.png') }}" alt="コメントする">
+                        <img class="iconcomment" src="{{ asset('img/comment.jpg') }}" alt="コメントする">
                         <span class="comment-count">{{ $product->comments_count }}</span>
                     </button>
                 </div>
