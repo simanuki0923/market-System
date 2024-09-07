@@ -9,9 +9,9 @@
     <link rel="stylesheet" href="{{ asset('css/done.css') }}">
 </head>
 <body>
-<div class="container">
-    <h1>決済が完了しました！</h1>
-    <a href="{{ route('product.list') }}" class="btn btn-primary">ホームに戻る</a>
-</div>
+    <div class="container">
+        <h1>決済が完了しました！</h1>
+        <a href="{{ route('product.list') }}" class="btn btn-primary">ホームに戻る</a>
+    </div>
 </body>
 </html>
