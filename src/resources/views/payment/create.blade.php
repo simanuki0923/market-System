@@ -18,9 +18,9 @@
             {{ session('status') }}
         </div>
     @endif
-    <div class="p-5">
-        <div class="col-6 card">
-            <div class="card-header">Stripe決済</div>
+    <section class="p-5">
+        <article class="col-6 card">
+            <header class="card-header">Stripe決済</header>
             <div class="card-body">
                 <form id="card-form" action="{{ route('payment.store') }}" method="POST">
                     @csrf
@@ -46,8 +46,8 @@
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
+        </article>
+    </section>
 </div>
 
 <script src="https://js.stripe.com/v3/"></script>
