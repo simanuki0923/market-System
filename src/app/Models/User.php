@@ -66,4 +66,9 @@ class User extends Authenticatable
    {
         return $this->hasOne(Payment::class);
    }
+
+   public function hasRole($role)
+   {
+        return $this->roles->contains('name', $role);
+   }
 }

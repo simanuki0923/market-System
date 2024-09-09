@@ -9,6 +9,8 @@ use App\Http\Controllers\SellController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\AdminLoginController;
+use App\Http\Controllers\AdminController;
 
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
@@ -86,4 +88,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit-payment-method', [PurchaseController::class, 'editPaymentMethod'])->name('edit.payment.method');
     Route::post('/update-payment-method', [PurchaseController::class, 'updatePaymentMethod'])->name('update.payment.method');
     
+});
+
+Route::get('/admin-login', [AdminLoginController::class, 'create'])->name('admin.login');
+Route::post('/admin-login', [AdminLoginController::class, 'store'])->name('admin.login.store');
+Route::post('/admin-logout', [AdminLoginController::class, 'destroy'])->name('admin.logout');
+
+    // 管理者用ルート
+Route::middleware(['auth:admins', 'role:admins'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
+    Route::delete('/admin/delete/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
+    Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('admin.showUsers');
+    Route::get('/admin/comment', [AdminController::class, 'showComments'])->name('admin.showComments');
+    Route::delete('/admin/comment/delete/{id}', [AdminController::class, 'deleteComment'])->name('admin.deleteComment');
 });
