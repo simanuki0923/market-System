@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\AdminLoginController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MailController;
 
 use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 
@@ -96,9 +97,19 @@ Route::post('/admin-logout', [AdminLoginController::class, 'destroy'])->name('ad
 
     // 管理者用ルート
 Route::middleware(['auth:admins', 'role:admins'])->group(function () {
+
+    //ダッシュボード関連ルート
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.index');
-    Route::delete('/admin/delete/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
+
+    //ユーザー削除ルート
     Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('admin.showUsers');
+    Route::delete('/admin/delete/{id}', [AdminController::class, 'deleteUser'])->name('admin.deleteUser');
+    
+    //コメント削除ルート
     Route::get('/admin/comment', [AdminController::class, 'showComments'])->name('admin.showComments');
     Route::delete('/admin/comment/delete/{id}', [AdminController::class, 'deleteComment'])->name('admin.deleteComment');
+
+    //メール送信ルート
+    Route::get('/admin/mail', [MailController::class, 'showForm'])->name('admin.showMailForm');
+    Route::post('/admin/mail/send', [MailController::class, 'sendMail'])->name('admin.sendMail');
 });
