@@ -16,50 +16,35 @@
         </a>
     </header>
     <main>
-        <div class="login__content">
-            <div class="login-form__heading">
-                <h2>ログイン</h2>
-            </div>
+        <section class="login__content">
+            <h2 class="login-form__heading">ログイン</h2>
+
             <form class="form" action="/login" method="post">
                 @csrf
-                <div class="form__group">
-                    <div class="form__group-title">
-                        <span class="form__label--item">メールアドレス</span>
-                    </div>
-                    <div class="form__group-content">
-                        <div class="form__input--text">
-                            <input type="email" name="email" value="{{ old('email') }}" />
-                        </div>
-                        <div class="form__error">
-                            @error('email')
-                            {{ $message }}
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                <div class="form__group">
-                    <div class="form__group-title">
-                        <span class="form__label--item">パスワード</span>
-                    </div>
-                    <div class="form__group-content">
-                        <div class="form__input--text">
-                            <input type="password" name="password" />
-                        </div>
-                        <div class="form__error">
-                            @error('password')
-                            {{ $message }}
-                            @enderror
-                        </div>
-                    </div>
-                </div>
-                <div class="form__button">
-                    <button class="form__button-submit" type="submit">ログイン</button>
-                </div>
+
+                <label class="form__group">
+                    <span class="form__label--item">メールアドレス</span>
+                    <input type="email" name="email" value="{{ old('email') }}" />
+                    @error('email')
+                    <span class="form__error">{{ $message }}</span>
+                    @enderror
+                </label>
+
+                <label class="form__group">
+                    <span class="form__label--item">パスワード</span>
+                    <input type="password" name="password" />
+                    @error('password')
+                    <span class="form__error">{{ $message }}</span>
+                    @enderror
+                </label>
+
+                <button class="form__button-submit" type="submit">ログイン</button>
             </form>
-            <div class="register__link">
+
+            <p class="register__link">
                 <a class="register__button-submit" href="/register">会員登録はこちら</a>
-            </div>
-        </div>
+            </p>
+        </section>
     </main>
 </body>
 </html>
