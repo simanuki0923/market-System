@@ -44,7 +44,7 @@
                                         class="comment__user-icon">
                                     <strong>{{ $comment->user->profile->name ?? $comment->user->name }}</strong>
                                 </div>
-                                <p>{{ $comment->comment_text }}</p>
+                                <p>{{ $comment->comment }}</p>
                                 @if(auth()->check() && auth()->id() == $comment->user_id)
                                     <!-- Delete button -->
                                     <form action="{{ route('product.destroyComment', ['productId' => $product->id, 'commentId' => $comment->id]) }}" method="POST" style="display:inline;">
