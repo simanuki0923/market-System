@@ -1,7 +1,7 @@
 header {
     background-color: black;
     width: 100%;
-    padding: 10px 0;
+    padding: 20px 0;
     text-align: left;
 }
 
@@ -17,123 +17,140 @@ header img {
 main {
     display: flex;
     justify-content: center;
-    height: calc(100vh - 50px);
+    align-items: center;
+    height: calc(100vh - 200px);
 }
 
-/* フォームの中央配置とテキスト左寄せ */
 .register__content {
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.register-form__heading {
+    color: black;
+    font-size: 30px;
+    margin-bottom: 60px;
+}
+
+.form__group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
     text-align: left;
 }
 
-/* 見出し */
-.register-form__heading h2 {
-    color: black;
-    font-weight: bold;
-    font-size: 30px;
-    margin-top: 70px;
-    text-align: center;
-}
-
-/* ラベル */
 .form__label--item {
     color: black;
-    font-weight: bold;
-    font-size: 15px;
-}
-
-/* 入力枠 */
-.form__input--text input {
-    width: 400px;
-    padding: 10px;
-    margin-bottom: 40px;
     font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
-/* ボタン */
+input[type="email"],
+input[type="password"] {
+    width: 400px;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.form__error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
 .form__button-submit {
     background-color: red;
     color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
     width: 400px;
-    padding: 10px;
-    font-size: 15px;
-    margin-top: 20px;
-}
-
-/* リンク */
-.login__link {
     text-align: center;
-    margin-top: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
 }
 
-.login__link a {
+.form__button-submit:hover {
+    opacity: 0.9;
+}
+
+.login__link {
+    margin-top: 25px;
+}
+
+.login__button-submit {
     color: blue;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.login__button-submit:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 768px) {
     header {
-        padding: 10px;
-        text-align: center;
-    }
-
-    header a {
-        margin-left: 0;
-        margin-right: 10px;
-        /* Adjust margin for better spacing */
+        padding: 20px 0;
     }
 
     header img {
         width: 150px;
-        /* Reduce image size for smaller screens */
     }
 
     main {
         height: auto;
-        /* Adjust height to fit content */
         padding: 10px;
     }
 
     .register__content {
-        text-align: center;
-        /* Center-align text on smaller screens */
+        width: 100%;
         padding: 10px;
-        /* Add padding for better spacing */
     }
 
-    .register-form__heading h2 {
+    .register-form__heading {
         font-size: 24px;
-        /* Adjust font size for smaller screens */
-        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+
+    .form__group {
+        width: 100%;
+        margin-bottom: 20px;
     }
 
     .form__label--item {
-        font-size: 14px;
-        /* Adjust font size for smaller screens */
+        font-size: 16px;
     }
 
-    .form__input--text input {
+    input[type="email"],
+    input[type="password"] {
         width: 100%;
-        /* Make input fields full-width on smaller screens */
-        max-width: 400px;
-        /* Maintain maximum width */
-        margin-bottom: 20px;
-        /* Reduce margin for better spacing */
+        padding: 12px;
+        font-size: 14px;
     }
 
     .form__button-submit {
         width: 100%;
-        /* Make button full-width on smaller screens */
-        max-width: 400px;
-        /* Maintain maximum width */
+        padding: 12px;
+        font-size: 14px;
     }
 
     .login__link {
-        text-align: center;
-        margin-top: 10px;
-        /* Reduce margin for better spacing */
+        margin-top: 15px;
     }
 
-    .login__link a {
+    .login__button-submit {
         font-size: 14px;
-        /* Adjust font size for smaller screens */
     }
 }
