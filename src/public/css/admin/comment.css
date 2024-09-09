@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    font-size: 30px;
+    padding: 10px;
+    text-align: center;
+}
+
+.table-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+/* Table styling */
+.comments-table {
+    width: 60%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.comments-table th,
+.comments-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    color: #000;
+}
+
+.comments-table th {
+    background-color: #f4f4f4;
+    color: #000;
+}
+
+/* Button styling */
+.delete-button {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #c0392b;
+}
+
+/* Alert styling */
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 5px;
+}
+
+.back-button {
+    background-color: blue;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    background-color: blue;
+}
+
+@media screen and (max-width: 768px) {
+    header {
+        font-size: 24px;
+    }
+
+    .table-wrapper {
+        padding: 10px;
+        text-align: center;
+    }
+
+    .comments-table {
+        width: 90%;
+        font-size: 17px;
+    }
+
+    .comments-table th,
+    .comments-table td {
+        padding: 6px;
+    }
+
+    .delete-button {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+
+    .back-button {
+        width: 80px;
+        height: 35px;
+        font-size: 16px;
+    }
+}
