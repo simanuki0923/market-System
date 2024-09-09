@@ -15,6 +15,7 @@
     <div class="btn-container">
         <a href="{{ route('admin.showUsers') }}" class="btn btn-primary">ユーザー削除</a>
         <a href="{{ route('admin.showComments') }}" class="btn btn-secondary">コメント管理</a>
+        <a href="{{ route('admin.showMailForm') }}" class="btn btn-info">メール送信</a>
         <form action="{{ route('admin.logout') }}" method="POST" style="display: inline;">
             @csrf
             <button type="submit" class="btn btn-danger">ログアウト</button>
