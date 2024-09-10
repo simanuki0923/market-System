@@ -4,6 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Product;
+use App\Models\User;
+use App\Models\Purchase;
 
 class PurchasesTableSeeder extends Seeder
 {
@@ -14,9 +17,17 @@ class PurchasesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('purchases')->insert([
-            ['user_id' => 1, 'product_id' => 1, 'purchase_date' => now()],
-
+        $user = User::first() ?? User::factory()->create();
+        
+        $product = Product::first() ?? Product::factory()->create();
+        
+        Purchase::create([
+            'user_id' => $user->id,
+            'product_id' => $product->id,
+            'purchase_date' => now(),
         ]);
+
+        Purchase::factory()->count(10)->create();
+
     }
 }

@@ -11,15 +11,18 @@ class CommentSeeder extends Seeder
 {
     public function run()
     {
-        $product = Product::first(); 
-        $user = User::first();
+        $product = Product::first() ?? Product::factory()->create();
 
-        for ($i = 1; $i <= 3; $i++) {
-            Comment::create([
-                'product_id' => $product->id,
-                'user_id' => $user->id,
-                'comment' => 'これは仮コメント' . $i . 'です。ユーザーID: ' . $user->id,
-            ]);
-        }
+        $user = User::first() ?? User::factory()->create();
+
+        
+        Comment::create([
+            'product_id' => $product->id,
+            'user_id' => $user->id,
+            'comment' => 'これは仮コメント',
+        ]);
+        
+
+        Comment::factory()->count(10)->create();
     }
 }
