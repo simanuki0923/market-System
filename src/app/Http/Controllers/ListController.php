@@ -10,29 +10,34 @@ use App\Models\User;
 class ListController extends Controller
 {
     public function list()
-    {
-        // おすすめ商品をデータベースから取得
-        $recommendedProducts = Product::all();
+{
+    // おすすめ商品をデータベースから取得
+    $recommendedProducts = Product::all();
 
-        // 現在ログインしているユーザー
-        $user = auth()->user();
+    // 現在ログインしているユーザー
+    $user = auth()->user();
 
-        // マイリスト（お気に入り）を取得
-        $myList = $user ? $user->favorites()->with('product')->get()->map(function ($favorite) {
-            return [
-                'id' => $favorite->product->id,
-                'name' => $favorite->product->name,
-                'image_url' => $favorite->product->image_url ? asset('storage/' . $favorite->product->image_url) : 'default-image.jpg',
-                'link' => route('product', ['id' => $favorite->product->id]),
-                'category' => $favorite->product->category->name ?? 'Uncategorized',
-                'brand' => $favorite->product->brand,
-                'condition' => $favorite->product->condition,
-            ];
-        }) : [];
+    // マイリスト（お気に入り）を取得
+    $myList = $user ? $user->favorites()->with('product')->get()->map(function ($favorite) {
+        // $favorite->product が null の場合に対応
+        if (!$favorite->product) {
+            return null; // 商品が存在しない場合は null を返す
+        }
 
-        return view('list', [
-            'recommendedProducts' => $recommendedProducts,
-            'myList' => $myList,
-        ]);
-    }
+        return [
+            'id' => $favorite->product->id,
+            'name' => $favorite->product->name,
+            'image_url' => $favorite->product->image_url ? asset('storage/' . $favorite->product->image_url) : 'default-image.jpg',
+            'link' => route('product', ['id' => $favorite->product->id]),
+            'category' => $favorite->product->category->name ?? 'Uncategorized',
+            'brand' => $favorite->product->brand,
+            'condition' => $favorite->product->condition,
+        ];
+    })->filter()->all() : [];
+
+    return view('list', [
+        'recommendedProducts' => $recommendedProducts,
+        'myList' => $myList,
+    ]);
+}
 }
