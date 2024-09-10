@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Mail as MailFacade;
 
 class MailController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth'); // Authentication middleware
+    }
+
     // Show the form to send emails
     public function showForm()
     {
@@ -28,7 +33,8 @@ class MailController extends Controller
         $user = User::where('email', $request->recipient_email)->first();
         
         if (!$user) {
-            return redirect()->route('admin.showMailForm')->with('error', '指定されたメールアドレスは登録されていません。');
+            return redirect()->route('admin.showMailForm')
+                             ->with('error', '指定されたメールアドレスは登録されていません。');
         }
 
         // Save the mail information in the database
@@ -40,12 +46,12 @@ class MailController extends Controller
         ]);
 
         // Send the email
-        MailFacade::send([], [], function ($message) use ($request) {
+        MailFacade::raw($request->message, function ($message) use ($request) {
             $message->to($request->recipient_email)
-                    ->subject($request->subject)
-                    ->setBody($request->message, 'text/html');
+                    ->subject($request->subject);
         });
 
-        return redirect()->route('admin.showMailForm')->with('success', 'メールを送信致しました。');
+        return redirect()->route('admin.showMailForm')
+                         ->with('success', 'メールを送信致しました。');
     }
 }
