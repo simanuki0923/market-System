@@ -10,11 +10,17 @@ class Profile extends Model
     use HasFactory;
 
     protected $fillable = [
-        'postal_code', 'address', 'building_name', 'icon_image_path',
+        'user_id',
+        'name',
+        'postal_code',
+        'address',
+        'building',
+        'icon_image_path',
     ];
 
+    // Define the relationship with User
     public function user()
-   {
-    return $this->belongsTo(User::class);
-   }
+    {
+        return $this->belongsTo(User::class);
+    }
 }
