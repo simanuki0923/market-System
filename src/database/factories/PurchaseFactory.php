@@ -21,6 +21,8 @@ class PurchaseFactory extends Factory
         return [
             'user_id' => User::inRandomOrder()->first()->id,
             'product_id' => Product::inRandomOrder()->first()->id,
+            'price' => $this->faker->randomFloat(2, 1000, 10000),
+            'status' => $this->faker->randomElement(['pending', 'completed', 'canceled']),
             'purchase_date' => $this->faker->dateTimeBetween('-1 year', 'now'),
         ];
     }

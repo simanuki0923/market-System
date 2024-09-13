@@ -18,12 +18,13 @@ class PurchasesTableSeeder extends Seeder
     public function run()
     {
         $user = User::first() ?? User::factory()->create();
-        
         $product = Product::first() ?? Product::factory()->create();
         
         Purchase::create([
             'user_id' => $user->id,
             'product_id' => $product->id,
+            'price' => $product->price,
+            'status' => 'completed',
             'purchase_date' => now(),
         ]);
 
