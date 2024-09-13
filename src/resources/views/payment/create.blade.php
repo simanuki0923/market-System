@@ -24,6 +24,7 @@
             <div class="card-body">
                 <form id="card-form" action="{{ route('payment.store') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <div>
                         <label for="card_number">カード番号</label>
                         <div id="card-number" class="form-control"></div>
