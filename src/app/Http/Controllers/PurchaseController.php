@@ -14,8 +14,10 @@ class PurchaseController extends Controller
         $productId = $request->input('product_id');
         $product = Product::find($productId);
 
-        if (!$product) {
-            return redirect()->back()->with('error', '商品が見つかりません');
+        $user = Auth::user();
+
+        if ($product->user_id === $user->id) {
+            return redirect()->back()->with('error', '自分が出品した商品は購入できません');
         }
 
         $profile = Auth::user()->profile;
