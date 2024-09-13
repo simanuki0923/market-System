@@ -50,7 +50,7 @@
                     </p>
                 </div>
             </section>
-            <form action="{{ route('payment.create') }}" method="GET">
+            <form action="{{ route('payment.create', ['productId' => $product->id]) }}" method="GET">
                 <button type="submit" class="purchase-button">購入を確定する</button>
             </form>
         </div>
