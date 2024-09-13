@@ -3,34 +3,53 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\StorePaymentRequest;
 use App\Models\Product;
+use App\Models\Purchase;
+use Stripe\Stripe;
+use Stripe\Charge;
 use Exception;
 
 class PaymentController extends Controller
 {
+    public function __construct()
+    {
+        Stripe::setApiKey(config('services.stripe.secret'));
+    }
 
     public function create(Request $request)
     {
-        $product = Product::find($request->product_id);
+        $product = Product::findOrFail($request->productId);
         return view('payment.create', compact('product'));
     }
 
-
-    public function store(StorePaymentRequest $request)
+    public function store(Request $request)
     {
-        \Stripe\Stripe::setApiKey(config('stripe.stripe_secret_key'));
+        $product = Product::findOrFail($request->product_id);
+        $token = $request->input('stripeToken');
+        $amount = $product->price * 100; // Amount in cents
 
         try {
-            \Stripe\Charge::create([
-                'source' => $request->stripeToken,
-                'amount' => 1000,
+            $charge = Charge::create([
+                'amount' => $amount,
                 'currency' => 'jpy',
+                'description' => 'Product Purchase',
+                'source' => $token,
             ]);
+
+            // Save purchase record
+            Purchase::create([
+                'user_id' => auth()->id(),
+                'product_id' => $product->id,
+                'price' => $product->price,
+                'status' => 'paid',
+                'purchase_date' => now(),
+            ]);
+
+            return redirect()->route('payment.done')->with('status', 'Payment successful!');
+
         } catch (Exception $e) {
-            return back()->with('flash_alert', '決済に失敗しました！('. $e->getMessage() . ')');
+            return redirect()->route('payment.create', ['productId' => $product->id])->with('flash_alert', $e->getMessage());
         }
-        return redirect()->route('payment.done')->with('status', '決済が完了しました！');
     }
 
     public function done()
