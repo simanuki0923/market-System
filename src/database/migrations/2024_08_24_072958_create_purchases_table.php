@@ -17,7 +17,9 @@ class CreatePurchasesTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->timestamp('purchase_date')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->decimal('price', 8, 2);
+            $table->string('status')->default('pending');
+            $table->timestamp('purchase_date')->nullable();
             $table->timestamps();
         });
     }

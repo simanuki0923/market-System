@@ -26,7 +26,7 @@ use Laravel\Fortify\Http\Controllers\AuthenticatedSessionController;
 |
 */
 // ホーム画面ページ
-Route::get('/', [ListController::class, 'list'])->name('product.list');
+Route::get('/', [ListController::class, 'list'])->name('home');
 
 //検索ソート機能
 Route::get('/search', [SearchController::class, 'index'])->name('search');
@@ -81,7 +81,7 @@ Route::middleware('auth')->group(function () {
 
     // payment決済実装
     Route::prefix('payment')->name('payment.')->group(function () {
-        Route::get('/create', [PaymentController::class, 'create'])->name('create');
+        Route::get('/create/{productId}', [PaymentController::class, 'create'])->name('create');
         Route::post('/store', [PaymentController::class, 'store'])->name('store');
         Route::get('/done', [PaymentController::class, 'done'])->name('done');
     });
