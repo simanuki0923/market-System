@@ -12,7 +12,7 @@ class ListController extends Controller
     public function list()
 {
     // おすすめ商品をデータベースから取得
-    $recommendedProducts = Product::all();
+    $recommendedProducts = Product::where('is_sold', false)->get();
 
     // 現在ログインしているユーザー
     $user = auth()->user();
@@ -20,9 +20,9 @@ class ListController extends Controller
     // マイリスト（お気に入り）を取得
     $myList = $user ? $user->favorites()->with('product')->get()->map(function ($favorite) {
         // $favorite->product が null の場合に対応
-        if (!$favorite->product) {
-            return null; // 商品が存在しない場合は null を返す
-        }
+            if (!$favorite->product || $favorite->product->is_sold) {
+                return null; // 商品が存在しない、または販売済みの場合は null を返す
+            }
 
         return [
             'id' => $favorite->product->id,
