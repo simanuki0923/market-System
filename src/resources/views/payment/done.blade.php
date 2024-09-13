@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <h1>決済が完了しました！</h1>
-        <a href="{{ route('product.list') }}" class="btn btn-primary">ホームに戻る</a>
+        <a href="{{ route('home') }}" class="btn btn-primary">ホームに戻る</a>
     </div>
 </body>
 </html>
