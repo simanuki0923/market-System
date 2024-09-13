@@ -45,6 +45,9 @@ class PaymentController extends Controller
                 'purchase_date' => now(),
             ]);
 
+            $product->is_sold = true;
+            $product->save();
+
             return redirect()->route('payment.done')->with('status', 'Payment successful!');
 
         } catch (Exception $e) {
