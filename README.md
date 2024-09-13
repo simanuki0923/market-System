@@ -19,9 +19,10 @@
 
 ## URL
  一般利用画面
-
+http://
 
  管理者画面
+http://
 
 ## 機能一覧
 ログイン機能、ユーザー登録機能、商品一覧の表示　商品検索機能
@@ -36,10 +37,10 @@
 docker、Laravel 8.X、PHP7.3、laravel-fortify、stripe15.8
 
 ## テーブル設計
-![alt text](img/)
+![alt text](img/table.jpg)
 
 ## ER図
-![alt text](img/)
+![alt text](img/ER.jpg)
 
 ## 環境構築
 ###コマンドライン上
@@ -78,7 +79,7 @@ $ sudo chmod -R 775 bootstrap/cache
 ```
 
 ### PHPコンテナ内
-# CSS修正出来ない場合設定
+### CSS修正出来ない場合設定
 ```
 $ npm install
 $ npm run watch
