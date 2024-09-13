@@ -23,6 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('image_url')->nullable();
             $table->string('brand', 255)->nullable();
             $table->string('condition', 50)->nullable();
+            $table->boolean('is_sold')->default(false);
             $table->timestamps();
         });
     }
