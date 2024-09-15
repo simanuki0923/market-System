@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\StoreProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Support\Facades\Storage;
@@ -20,23 +20,13 @@ class SellController extends Controller
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        // バリデーション
-        $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'name' => 'required|string|max:255',
-            'description' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'category' => 'required|string|max:255',
-            'condition' => 'required|string|max:50'
-        ]);
-
         // 商品画像の保存
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/images');
-            $imagePath = str_replace('public/', '', $imagePath); // パスを修正
+            $imagePath = str_replace('public/', '', $imagePath);
         }
 
         // カテゴリー名からIDを取得または新規作成
