@@ -4,32 +4,23 @@ namespace App\Http\Controllers;
 
 use App\Models\Mail;
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Http\Requests\SendMailRequest;
 use Illuminate\Support\Facades\Mail as MailFacade;
 
 class MailController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); // Authentication middleware
+        $this->middleware('auth');
     }
 
-    // Show the form to send emails
     public function showForm()
     {
         return view('admin.mail');
     }
 
-    // Handle the form submission and send the email
-    public function sendMail(Request $request)
+    public function sendMail(SendMailRequest $request)
     {
-        // Validate the request
-        $request->validate([
-            'recipient_email' => 'required|email',
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string',
-        ]);
-
         $user = User::where('email', $request->recipient_email)->first();
         
         if (!$user) {
@@ -37,7 +28,6 @@ class MailController extends Controller
                              ->with('error', '指定されたメールアドレスは登録されていません。');
         }
 
-        // Save the mail information in the database
         Mail::create([
             'user_id' => $user->id,
             'recipient_email' => $request->recipient_email,
@@ -45,7 +35,6 @@ class MailController extends Controller
             'message' => $request->message,
         ]);
 
-        // Send the email
         MailFacade::raw($request->message, function ($message) use ($request) {
             $message->to($request->recipient_email)
                     ->subject($request->subject);
