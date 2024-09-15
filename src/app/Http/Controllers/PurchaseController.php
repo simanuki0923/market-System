@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Payment;
+use App\Http\Requests\UpdatePaymentMethodRequest;
+use App\Http\Requests\UpdateAddressRequest;
 
 class PurchaseController extends Controller
 {
@@ -39,16 +40,9 @@ class PurchaseController extends Controller
         return view('address', compact('profile'));
     }
 
-    public function updateAddress(Request $request)
+    public function updateAddress(UpdateAddressRequest $request)
     {
-        $request->validate([
-            'postal_code' => 'required|string|max:7',
-            'address' => 'required|string|max:255',
-            'building' => 'nullable|string|max:255',
-        ]);
-
         $profile = Auth::user()->profile;
-
         $profile->update([
             'postal_code' => $request->postal_code,
             'address' => $request->address,
@@ -71,12 +65,8 @@ class PurchaseController extends Controller
         return view('payment', compact('payment'));
     }
 
-    public function updatePaymentMethod(Request $request)
+    public function updatePaymentMethod(UpdatePaymentMethodRequest $request)
     {
-        $request->validate([
-            'payment_method' => 'required|in:credit_card,convenience_store,bank_transfer',
-        ]);
-
         $user = Auth::user();
         $payment = $user->payment;
 
