@@ -8,12 +8,10 @@
     <main class="contact-form__main">
         <div class="profile-section">
             <div class="profile-icon">
-                <!-- Display the user profile icon or a default icon -->
                 <img src="{{ $user->profile && $user->profile->icon_image_path ? asset('storage/' . $user->profile->icon_image_path) : asset('img/sample.jpg') }}" alt="{{ $user_name ?? $user->name }}のアイコン">
             </div>
             <div class="profile-info">
                 <div class="profile-info-content">
-                    <!-- Display the user's name -->
                     <p class="user-name">{{ $user_name }}</p>
                 </div>
                 <a href="{{ route('profile.edit') }}" class="edit-profile-btn">プロフィール編集</a>
@@ -30,6 +28,9 @@
             <article class="product-item">
                 <a href="{{ route('product', ['id' => $product->id]) }}">
                     <img src="{{ asset('storage/' . $product->image_url) }}" alt="{{ $product->name }}">
+                    @if ($product->is_sold)
+                        <div class="sold-out-label">sold out</div>
+                    @endif
                 </a>
             </article>
         @endforeach
@@ -71,7 +72,6 @@
             document.getElementById(hideLinkId).setAttribute('aria-pressed', 'false');
         }
 
-        // Default display of listed products
         document.getElementById('listedProducts').style.display = 'grid';
         document.getElementById('purchasedProducts').style.display = 'none';
     </script>
