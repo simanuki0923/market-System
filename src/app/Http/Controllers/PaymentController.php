@@ -25,6 +25,12 @@ class PaymentController extends Controller
     public function store(Request $request)
     {
         $product = Product::findOrFail($request->product_id);
+        
+        if ($product->is_sold) {
+            return redirect()->route('payment.create', ['productId' => $product->id])
+                ->with('flash_alert', 'This product has already been sold.');
+        }
+
         $token = $request->input('stripeToken');
         $amount = $product->price * 100; // Amount in cents
 
