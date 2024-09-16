@@ -14,26 +14,18 @@ class SellController extends Controller
         return view('sell');
     }
 
-    /**
-     * 商品のデータを保存する
-     *
-     * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function store(StoreProductRequest $request)
     {
-        // 商品画像の保存
+
         $imagePath = null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('public/images');
             $imagePath = str_replace('public/', '', $imagePath);
         }
 
-        // カテゴリー名からIDを取得または新規作成
         $category = Category::firstOrCreate(['name' => $request->input('category')]);
         $categoryId = $category->id;
 
-        // 商品データの保存
         Product::create([
             'user_id' => auth()->id(),
             'name' => $request->input('name'),
