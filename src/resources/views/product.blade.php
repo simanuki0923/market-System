@@ -21,13 +21,10 @@
             <p class="price">¥{{ $product->price ? number_format($product->price) : '価格が設定されていません' }}(値段)</p>
             
             <aside class="action-buttons">
-                <!-- Favorite Button -->
                 <button aria-label="お気に入り" id="favorite-button" data-product-id="{{ $product->id }}" class="{{ $isFavorited ? 'favorited' : '' }}">
                     <img class="iconstar" src="{{ asset('img/star.jpg') }}" alt="お気に入りアイコン">
                     <span id="favorite-count">{{ $product->favorites_count ?? 0 }}</span>
                 </button>
-
-                <!-- Comment Button -->
                 <button type="button" aria-label="コメントする" onclick="window.location='{{ route('product.comments', ['id' => $product->id]) }}'">
                     <img class="iconcomment" src="{{ asset('img/comment.jpg') }}" alt="コメントアイコン">
                     <span id="comment-count">{{ $product->comments_count ?? 0 }}</span>
@@ -62,13 +59,11 @@
         }).then(response => response.json())
           .then(data => {
               if (data.success) {
-                  // お気に入りの数を更新
                   let favoriteCount = document.getElementById('favorite-count');
                   if (favoriteCount) {
                       favoriteCount.textContent = data.favorites_count;
                   }
 
-                  // アイコンの色を切り替える
                   let favoriteButton = document.getElementById('favorite-button');
                   favoriteButton.classList.toggle('favorited', data.favorited);
               } else {
