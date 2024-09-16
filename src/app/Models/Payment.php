@@ -16,10 +16,9 @@ class Payment extends Model
         return $this->belongsTo(User::class);
     }
     
-    // Accessor for payment_method to ensure valid values
     public function getPaymentMethodAttribute($value)
     {
         $validMethods = ['credit_card', 'convenience_store', 'bank_transfer'];
-        return in_array($value, $validMethods) ? $value : 'credit_card'; // default value
+        return in_array($value, $validMethods) ? $value : 'credit_card';
     }
 }
