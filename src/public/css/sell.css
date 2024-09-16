@@ -4,7 +4,6 @@
     padding: 20px;
 }
 
-/* Center the form in the main section */
 .sell-form__main {
     display: flex;
     justify-content: center;
@@ -12,26 +11,23 @@
     flex-direction: column;
 }
 
-/* Styles for <h2> */
 .sell-form__main h2 {
     color: black;
     font-weight: bold;
     font-size: 30px;
 }
 
-/* Styles for <legend> */
 .sell-form__legend {
     color: rgb(100, 100, 100);
     font-size: 20px;
     border-bottom: 1px solid gray;
     padding-bottom: 5px;
     margin-bottom: 10px;
-    width: 500px; /* Match the width of your input fields */
+    width: 500px;
     text-align: left;
     display: inline-block;
 }
 
-/* Styles for <label> */
 .sell-form__label {
     display: block;
     color: black;
@@ -40,7 +36,6 @@
     margin-bottom: 5px;
 }
 
-/* Styles for <input> and <textarea> */
 .sell-form__input,
 .sell-form__textarea {
     border: 1px solid black;
@@ -53,41 +48,28 @@
 
 .sell-form__input::before {
     content: '￥';
-    /* Yen symbol */
     position: absolute;
     left: 10px;
-    /* Adjust position from the left edge */
     top: 50%;
-    /* Center vertically */
     transform: translateY(-50%);
-    /* Center vertically */
     font-size: 15px;
-    /* Adjust size as needed */
     color: black;
-    /* Adjust color for visibility */
     font-weight: bold;
-    /* Make the symbol bold */
     pointer-events: none;
-    /* Ensure it does not interfere with user input */
 }
 
-/* Hide the default file input */
 .sell-form__input[type="file"] {
     display: none;
 }
 
 .sell-form__file-wrapper {
     border: 2px solid #c6c5c5;
-    /* Gray border around the label */
     padding: 5px;
-    /* Padding around the label */
     border-radius: 4px;
-    /* Match the label's border radius */
     display: inline-block;
     width: 500px;
 }
 
-/* Style the label for file input to look like a link */
 .sell-form__file-label {
     display: inline-block;
     color: red;
@@ -98,14 +80,13 @@
     cursor: pointer;
     border-radius: 4px;
     text-align: center;
-    width: 120px; /* Match the width of your input fields */
+    width: 120px;
     text-decoration: none;
     margin: 10px 0;
     display: block;
     margin-left: 180px;
 }
 
-/* Styles for submit button */
 .sell-form__button {
     border: 1px solid red;
     background-color: red;
@@ -118,7 +99,6 @@
     border-radius: 4px;
 }
 
-/* Adjust margin and padding as needed */
 .sell-form__fieldset {
     border: none;
     margin: 20px 0;
@@ -128,36 +108,28 @@
 @media (max-width: 768px) {
     .sell-form__main {
         padding: 10px;
-        /* Reduce padding for smaller screens */
     }
 
     .sell-form__main h2 {
         font-size: 24px;
-        /* Reduce font size for headings */
         margin-bottom: 20px;
-        /* Adjust margin for better spacing */
     }
 
     .sell-form__input,
     .sell-form__textarea {
         width: 100%;
-        /* Ensure inputs take full width */
         max-width: none;
-        /* Remove max-width for smaller screens */
     }
 
     .sell-form__file-wrapper,
     .sell-form__file-label,
     .sell-form__button {
         width: 100%;
-        /* Ensure elements take full width */
         max-width: none;
-        /* Remove max-width */
     }
 
     .sell-form__file-label {
         margin-left: 0;
-        /* Remove left margin */
     }
 
     legend.sell-form__legend {
