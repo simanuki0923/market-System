@@ -33,12 +33,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
@@ -70,7 +64,7 @@ class User extends Authenticatable
    }
 
    public function isAdmin()
-{
-    return $this->admin && $this->admin->isAdmin();
-}
+   {
+        return $this->admin && $this->admin->isAdmin();
+   }
 }

@@ -18,7 +18,6 @@ class Profile extends Model
         'icon_image_path',
     ];
 
-    // Define the relationship with User
     public function user()
     {
         return $this->belongsTo(User::class);
