@@ -23,7 +23,7 @@ class AdminController extends Controller
 
     public function showUsers()
     {
-        $users = User::all(); // 全ユーザーを取得
+        $users = User::all();
         return view('admin.delete', compact('users'));
     }
 
