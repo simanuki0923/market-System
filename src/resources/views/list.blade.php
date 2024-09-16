@@ -12,26 +12,30 @@
                 <a href="#" id="toggleMyList" class="tab-link">マイリスト</a>
             </nav>
 
-            <!-- おすすめ商品 -->
             <section id="recommendedProducts" class="product-list__section">
                 <ul class="product-list__items">
                     @foreach ($recommendedProducts as $product)
                         <li class="product-item">
                             <a href="{{ route('product', ['id' => $product->id]) }}">
                                 <img src="{{ $product->image_url ? asset('storage/' . $product->image_url) : asset('storage/img/no-image.png') }}" alt="{{ $product->name }}">
+                                @if ($product->is_sold)
+                                    <span class="sold-out-label">sold out</span>
+                                @endif
                             </a>
                         </li>
                     @endforeach
                 </ul>
             </section>
 
-            <!-- マイリスト -->
             <section id="myList" class="product-list__section" style="display: none;">
                 <ul class="product-list__items">
                     @foreach ($myList as $product)
                         <li class="product-item">
                             <a href="{{ $product['link'] }}">
                                 <img src="{{ $product['image_url'] }}" alt="{{ $product['name'] }}">
+                                @if ($product['is_sold'])
+                                    <span class="sold-out-label">sold out</span>
+                                @endif
                             </a>
                         </li>
                     @endforeach
