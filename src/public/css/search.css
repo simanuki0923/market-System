@@ -5,12 +5,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    /* Aligns items to the left */
 }
 
 .product-item {
     width: calc(20% - 10px);
-    /* Five items per row with space between */
     margin: 5px;
     box-sizing: border-box;
 }
@@ -23,7 +21,6 @@
     width: 70%;
     height: auto;
     aspect-ratio: 1 / 1;
-    /* Ensures the image remains a square */
     object-fit: cover;
 }
 
@@ -36,7 +33,6 @@
 @media (max-width: 768px) {
     .product-item {
         width: calc(50% - 10px);
-        /* Two items per row with space between */
     }
 
     .no-products {

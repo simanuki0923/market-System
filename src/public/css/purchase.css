@@ -1,9 +1,7 @@
 .purchase-form__main {
     display: flex;
     justify-content: center;
-    /* 中央に配置 */
     align-items: center;
-    /* 縦方向も中央に配置 */
     padding: 20px;
     height: 100vh;
     box-sizing: border-box;
@@ -129,45 +127,32 @@
 
     .right-side {
         display: flex;
-        /* Ensure it can center content */
         justify-content: center;
-        /* Center content horizontally */
         align-items: center;
-        /* Center content vertically if needed */
     }
 
     .product-info {
         flex-direction: column;
         align-items: center;
-        /* Center product info items horizontally */
     }
 
     .product-image {
         display: flex;
-        /* Make it a flex container */
         justify-content: center;
-        /* Center the image horizontally */
         width: 100%;
-        /* Ensure it takes the full width */
         margin: 0 auto;
-        /* Center the container itself */
 
     }
 
     .product-image img {
         max-width: 150px;
         width: auto;
-        /* Adjust width based on the container */
         height: auto;
-        /* Maintain aspect ratio */
         margin: 0;
-        /* Remove margins if any */
         margin-bottom: 20x;
-                padding-top: 100px;
-                    /* Add some spacing if needed */
-        }
+        padding-top: 100px;
+    }
     
-
     .product-details {
         font-size: 14px;
     }
