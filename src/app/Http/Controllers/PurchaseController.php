@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Payment;
 use App\Http\Requests\UpdatePaymentMethodRequest;
 use App\Http\Requests\UpdateAddressRequest;
+use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
@@ -14,15 +15,18 @@ class PurchaseController extends Controller
     {
         $productId = $request->input('product_id');
         $product = Product::find($productId);
-
         $user = Auth::user();
 
         if ($product->user_id === $user->id) {
             return redirect()->back()->with('error', '自分が出品した商品は購入できません');
         }
 
+        if ($product->is_sold) {
+            return redirect()->back()->with('error', 'この商品は既にソールドアウトです');
+        }
+
         $profile = Auth::user()->profile;
-        $payment = Auth::user()->payment; // Fetch the payment details
+        $payment = Auth::user()->payment;
 
         return view('purchase', compact('product', 'profile', 'payment'));
     }
@@ -32,7 +36,6 @@ class PurchaseController extends Controller
         $user = Auth::user();
         
         if (!$user->profile) {
-            // プロファイルが存在しない場合、新しいプロファイルを作成する
             $user->profile()->create([]);
         }
 
@@ -55,10 +58,9 @@ class PurchaseController extends Controller
     public function editPaymentMethod()
     {
         $user = Auth::user();
-        $payment = $user->payment; // Assuming a user has one payment method
+        $payment = $user->payment;
 
         if (!$payment) {
-            // Create a new payment method record if it doesn't exist
             $payment = new Payment();
         }
 
