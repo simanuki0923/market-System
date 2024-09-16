@@ -11,17 +11,13 @@ class ListController extends Controller
 {
     public function list()
 {
-    // おすすめ商品をデータベースから取得
-    $recommendedProducts = Product::where('is_sold', false)->get();
 
-    // 現在ログインしているユーザー
+    $recommendedProducts = Product::all();
     $user = auth()->user();
-
-    // マイリスト（お気に入り）を取得
     $myList = $user ? $user->favorites()->with('product')->get()->map(function ($favorite) {
-        // $favorite->product が null の場合に対応
-            if (!$favorite->product || $favorite->product->is_sold) {
-                return null; // 商品が存在しない、または販売済みの場合は null を返す
+
+            if (!$favorite->product) {
+                return null;
             }
 
         return [
@@ -32,6 +28,7 @@ class ListController extends Controller
             'category' => $favorite->product->category->name ?? 'Uncategorized',
             'brand' => $favorite->product->brand,
             'condition' => $favorite->product->condition,
+            'is_sold' => $favorite->product->is_sold,
         ];
     })->filter()->all() : [];
 
