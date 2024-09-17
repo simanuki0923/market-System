@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <h2 class="page-title">お知らせメール</h2>
+        <h1 class="page-title">お知らせメール</h1>
         <a href="{{ route('admin.index') }}" class="back-button">戻る</a>
     </header>
     @if (session('success'))
