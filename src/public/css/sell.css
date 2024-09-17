@@ -11,7 +11,7 @@
     flex-direction: column;
 }
 
-.sell-form__main h2 {
+.sell-form__main h1 {
     color: black;
     font-weight: bold;
     font-size: 30px;
@@ -110,7 +110,7 @@
         padding: 10px;
     }
 
-    .sell-form__main h2 {
+    .sell-form__main h1 {
         font-size: 24px;
         margin-bottom: 20px;
     }
