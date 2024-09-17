@@ -24,7 +24,7 @@ class StoreProductRequest extends FormRequest
     public function rules()
     {
         return [
-             'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'price' => 'required|numeric|min:0',
