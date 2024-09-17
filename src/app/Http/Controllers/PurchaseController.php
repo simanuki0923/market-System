@@ -14,8 +14,16 @@ class PurchaseController extends Controller
     public function purchase(Request $request)
     {
         $productId = $request->input('product_id');
+        
         $product = Product::find($productId);
+        if (!$product) {
+            return redirect()->back()->with('error', '商品が見つかりません');
+        }
+
         $user = Auth::user();
+        if (!$user) {
+            return redirect()->back()->with('error', 'ログインしてください');
+        }
 
         if ($product->user_id === $user->id) {
             return redirect()->back()->with('error', '自分が出品した商品は購入できません');
@@ -25,8 +33,8 @@ class PurchaseController extends Controller
             return redirect()->back()->with('error', 'この商品は既にソールドアウトです');
         }
 
-        $profile = Auth::user()->profile;
-        $payment = Auth::user()->payment;
+        $profile = $user->profile ?? null;
+        $payment = $user->payment ?? null;
 
         return view('purchase', compact('product', 'profile', 'payment'));
     }
@@ -35,6 +43,10 @@ class PurchaseController extends Controller
     {
         $user = Auth::user();
         
+        if (!$user) {
+            return redirect()->back()->with('error', 'ログインしてください');
+        }
+
         if (!$user->profile) {
             $user->profile()->create([]);
         }
@@ -45,7 +57,17 @@ class PurchaseController extends Controller
 
     public function updateAddress(UpdateAddressRequest $request)
     {
-        $profile = Auth::user()->profile;
+        $user = Auth::user();
+        
+        if (!$user) {
+            return redirect()->back()->with('error', 'ログインしてください');
+        }
+
+        $profile = $user->profile;
+        if (!$profile) {
+            return redirect()->back()->with('error', 'プロフィールが見つかりません');
+        }
+
         $profile->update([
             'postal_code' => $request->postal_code,
             'address' => $request->address,
@@ -58,11 +80,12 @@ class PurchaseController extends Controller
     public function editPaymentMethod()
     {
         $user = Auth::user();
-        $payment = $user->payment;
-
-        if (!$payment) {
-            $payment = new Payment();
+        
+        if (!$user) {
+            return redirect()->back()->with('error', 'ログインしてください');
         }
+
+        $payment = $user->payment ?? new Payment();
 
         return view('payment', compact('payment'));
     }
@@ -70,10 +93,14 @@ class PurchaseController extends Controller
     public function updatePaymentMethod(UpdatePaymentMethodRequest $request)
     {
         $user = Auth::user();
-        $payment = $user->payment;
+        
+        if (!$user) {
+            return redirect()->back()->with('error', 'ログインしてください');
+        }
 
-        if (!$payment) {
-            $payment = new Payment();
+        $payment = $user->payment ?? new Payment();
+        
+        if (!$payment->exists) {
             $payment->user_id = $user->id;
         }
 
