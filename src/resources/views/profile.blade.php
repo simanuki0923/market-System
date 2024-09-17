@@ -8,11 +8,11 @@
     <main class="contact-form__main">
         <div class="edit-profile">
             @if($user)
-                <h2>プロフィール設定</h2>
+                <h1>プロフィール設定</h1>
                 <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="file-container">
-                        <img src="{{ $user->profile && $user->profile->icon_image_path ? asset('storage/' . $user->profile->icon_image_path) : asset('img/default-icon.png') }}" alt="{{ $user->name }}のアイコン">
+                        <img src="{{ $user->profile && $user->profile->icon_image_path ? asset('storage/' . $user->profile->icon_image_path) : asset('img/sample.jpg') }}" alt="{{ $user->name }}のアイコン">
                         <label for="icon_image" class="file-label">アイコン画像を選択</label>
                         <input type="file" id="icon_image" name="icon_image" style="display:none;" onchange="previewImage(event);">
                     </div>                  
