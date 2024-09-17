@@ -17,7 +17,7 @@
     </header>
     <main>
         <section class="login__content">
-            <h2 class="login-form__heading">管理ログイン</h2>
+            <h1 class="login-form__heading">管理ログイン</h1>
 
             <form class="form" action="/admin-login" method="post">
                 @csrf
