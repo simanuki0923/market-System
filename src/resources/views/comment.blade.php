@@ -11,7 +11,7 @@
                 <img src="{{ $product->image_url ? asset('storage/' . $product->image_url) : asset('storage/img/no-image.png') }}" alt="{{ $product->name }}">
             </section>
             <section class="product-detail__info">
-                <h2>{{ $product->name ?? '商品名がありません' }}</h2>
+                <h1>{{ $product->name ?? '商品名がありません' }}</h1>
                 <p class="brand">ブランド: {{ $product->brand ?? 'ブランド情報がありません' }}</p>
                 <p class="price">¥{{ $product->price ? number_format($product->price) : '価格が設定されていません' }}(値段)</p>
                 <div class="product-detail__actions">
