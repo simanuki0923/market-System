@@ -36,13 +36,13 @@ header {
     margin-top: 700px;
 }
 
-.edit-address__main h2 {
+.edit-address__main h1 {
     color: black;
     font-weight: bold;
     font-size: 30px;
     margin-bottom: 70px;
     text-align: center;
-    margin-right: 100px;
+    margin-right: 90px;
 }
 
 .edit-address__main label {
@@ -87,7 +87,7 @@ header {
         margin-top: 550px;
     }
 
-    .edit-address__main h2 {
+    .edit-address__main h1 {
         font-size: 24px;
         margin-bottom: 40px;
         margin-right: 0;

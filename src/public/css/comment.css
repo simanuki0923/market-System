@@ -11,7 +11,7 @@
 
 .product-detail__image img {
     width: 80%;
-    height: auto;
+    height: 50%;
     display: block;
     margin-left: 90%;
 }
@@ -66,7 +66,7 @@
     color: #333;
 }
 
-.product-detail__comments h2 {
+.product-detail__comments h1 {
     margin-top: 20px;
     font-size: 1.5rem;
 }
@@ -186,7 +186,7 @@
     }
 
     .product-detail__actions {
-        flex-direction: column;
+        flex-direction: row;
         gap: 20px;
         width: 100%;
         justify-content: center;
@@ -197,7 +197,7 @@
         height: 35px;
     }
 
-    .product-detail__comments h2 {
+    .product-detail__comments h1 {
         text-align: center;
         font-size: 1.5rem;
     }

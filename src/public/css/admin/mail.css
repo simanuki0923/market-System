@@ -17,6 +17,7 @@ header {
     margin: 0;
     font-size: 35px;
     margin-bottom: 30px;
+    
 }
 
 main {
@@ -123,7 +124,6 @@ main {
     }
 
     main {
-        margin: 10px;
         padding: 15px;
         border-radius: 4px;
     }
