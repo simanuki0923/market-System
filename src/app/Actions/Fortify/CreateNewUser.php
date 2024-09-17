@@ -31,6 +31,13 @@ class CreateNewUser implements CreatesNewUsers
                 Rule::unique(User::class),
             ],
             'password' => ['required', 'string', new Password], // パスワードバリデーション
+        ], [
+            'email.required' => 'メールアドレスは必須です。',
+            'email.email' => '有効なメールアドレスを入力してください。',
+            'email.max' => 'メールアドレスは255文字以内で入力してください。',
+            'email.unique' => 'このメールアドレスは既に登録されています。',
+            'password.required' => 'パスワードは必須です。',
+            'password.string' => 'パスワードは文字列である必要があります。',
         ])->validate();
 
         // ユーザーの作成
