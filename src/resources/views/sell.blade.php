@@ -6,7 +6,7 @@
 
 @section('content')
     <main class="sell-form__main">
-        <h2>商品の出品</h2>
+        <h1>商品の出品</h1>
         <form action="/sell" method="POST" enctype="multipart/form-data" class="sell-form">
             @csrf
             <fieldset class="sell-form__fieldset">
