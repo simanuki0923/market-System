@@ -85,4 +85,13 @@ class ProductTest extends TestCase
 
         $this->assertEquals(2, $product->comments_count);
     }
+
+    /** @test */
+    public function it_can_check_if_the_product_is_sold()
+    {
+        $product = Product::factory()->create();
+        $this->assertFalse($product->is_sold);
+        Purchase::factory()->create(['product_id' => $product->id]);
+        $this->assertTrue($product->is_sold);
+    }
 }
