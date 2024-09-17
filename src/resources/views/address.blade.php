@@ -12,7 +12,7 @@
 <body>
     <header>
       <main class="edit-address__main">
-        <h2>住所の変更</h2>
+        <h1>住所の変更</h1>
         <form action="{{ route('purchase.address.update') }}" method="POST" class="address-form">
             @csrf
                 <label for="postal_code">郵便番号</label>
