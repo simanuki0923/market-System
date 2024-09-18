@@ -64,18 +64,24 @@ $ cp .env.local .env
 $ sudo chmod -R 777 src/* 
 ```
 
-### PHPコンテナ内
-```
-$ php artisan key:generate
-$ php artisan migrate
-$ php artisan db:seed
-$ php artisan storage:link
-```
-
 ### market-System/src
 ```
 $ sudo chmod -R 775 storage
 $ sudo chmod -R 775 bootstrap/cache
+$ php artisan storage:link
+```
+
+### ストレージへサンプル画像をコピーする
+### market-System/src
+```
+mkdir storage/app/public/images
+cp public/img/sample1.jpg public/img/sample2.jpg public/img/sample3.jpg src/storage/app/public/images/
+```
+
+### PHPコンテナ内
+```
+$ php artisan key:generate
+$ php artisan migrate --seed
 ```
 
 ### PHPコンテナ内
