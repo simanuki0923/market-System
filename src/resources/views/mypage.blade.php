@@ -14,7 +14,7 @@
                 <div class="profile-info-content">
                     <p class="user-name">{{ $user_name }}</p>
                 </div>
-                <a href="{{ route('profile.edit') }}" class="edit-profile-btn">プロフィール編集</a>
+                <a href="{{ route('profile.edit') }}" class="edit-profile-btn">プロフィールを編集</a>
             </div>
         </div>
         <div class="toggle-links">
