@@ -38,7 +38,7 @@
                     @enderror
                 </label>
 
-                <button class="form__button-submit" type="submit">ログイン</button>
+                <button class="form__button-submit" type="submit">ログインする</button>
             </form>
 
             <p class="register__link">
