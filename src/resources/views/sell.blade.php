@@ -13,12 +13,13 @@
                 <legend class="sell-form__legend">商品画像</legend>
                 <input type="file" id="image" name="image" class="sell-form__input" aria-label="商品画像を選択">
                 <div class="sell-form__file-wrapper">
-                    <label for="image" class="sell-form__file-label">画像を選択</label>
+                    <label for="image" class="sell-form__file-label">画像を選択する</label>
                 </div>
                 @error('image')
                     <div class="sell-form__error">{{ $message }}</div>
                 @enderror
             </fieldset>
+
             <fieldset class="sell-form__fieldset">
                 <legend class="sell-form__legend">商品の詳細</legend>
                 <label for="category" class="sell-form__label">カテゴリー</label>
@@ -33,6 +34,7 @@
                     <div class="sell-form__error">{{ $message }}</div>
                 @enderror
             </fieldset>
+
             <fieldset class="sell-form__fieldset">
                 <legend class="sell-form__legend">商品名と説明</legend>
                 <label for="name" class="sell-form__label">商品名</label>
@@ -47,6 +49,7 @@
                     <div class="sell-form__error">{{ $message }}</div>
                 @enderror
             </fieldset>
+
             <fieldset class="sell-form__fieldset">
                 <legend class="sell-form__legend">販売価格</legend>
                 <label for="price" class="sell-form__label">販売価格</label>
@@ -55,6 +58,7 @@
                     <div class="sell-form__error">{{ $message }}</div>
                 @enderror
             </fieldset>
+            
             <button type="submit" class="sell-form__button">出品する</button>
         </form>
     </main>
