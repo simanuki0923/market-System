@@ -55,7 +55,6 @@ Route::middleware('auth')->group(function () {
     // コメントページ
     Route::get('/product/{id}/comments', [ProductController::class, 'showComments'])->name('product.comments');
     Route::post('/product/{id}/comments', [ProductController::class, 'storeComment'])->name('product.storeComment');
-    Route::delete('/product/{productId}/comments/{commentId}', [ProductController::class, 'destroyComment'])->name('product.destroyComment');
 
     // 購入ページ
     Route::get('/purchase', [PurchaseController::class, 'purchase'])->name('purchase');
