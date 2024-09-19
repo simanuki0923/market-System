@@ -13,7 +13,7 @@
                 </figure>
                 <div class="product-details">
                     <h2>{{ $product->name }}</h2>
-                    <p>価格: ¥{{ number_format($product->price) }}</p>
+                    <p>¥{{ number_format($product->price) }}</p>
                 </div>
             </section>
 
@@ -50,8 +50,9 @@
                     </p>
                 </div>
             </section>
+            
             <form action="{{ route('payment.create', ['productId' => $product->id]) }}" method="GET">
-                <button type="submit" class="purchase-button">購入を確定する</button>
+                <button type="submit" class="purchase-button">購入する</button>
             </form>
         </div>
     </main>
