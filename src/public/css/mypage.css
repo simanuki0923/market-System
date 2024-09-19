@@ -33,8 +33,7 @@
 
 .edit-profile-btn {
     text-decoration: none;
-    color: white;
-    background-color: red;
+    color: red;
     border: 2px solid red;
     padding: 10px 15px;
     border-radius: 5px;
@@ -45,6 +44,7 @@
     right: 0;
     top: 50%;
     transform: translateY(-50%);
+    margin-right: 50px;
 }
 
 .toggle-links {
@@ -155,7 +155,7 @@
         position: absolute;
         left: 50%;
         transform: translateX(-50%);
-        width: 150px;
+        width: 180px;
         text-align: center;
         margin-top: 80px;
     }

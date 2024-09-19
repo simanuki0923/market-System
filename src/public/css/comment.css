@@ -148,18 +148,6 @@
     background-color: #cc0000;
 }
 
-.btn-danger {
-    background-color: #dc3545;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-}
-
-.btn-danger:hover {
-    background-color: #c82333;
-}
-
 @media (max-width: 768px) {
     .product-detail__container {
         flex-direction: column;
@@ -174,7 +162,7 @@
     }
 
     .product-detail__image img {
-        width: 80%;
+        width: 50%;
         height: auto;
         margin: 0 auto;
     }
