@@ -17,7 +17,7 @@
 
         <section class="product-detail__info">
             <h2>{{ $product->name ?? '商品名がありません' }}</h2>
-            <p class="brand">ブランド: {{ $product->brand ?? 'ブランド情報がありません' }}</p>
+            <p class="brand">{{ $product->brand ?? 'ブランド情報がありません' }}</p>
             <p class="price">¥{{ $product->price ? number_format($product->price) : '価格が設定されていません' }}(値段)</p>
             
             <aside class="action-buttons">
@@ -36,12 +36,13 @@
             </button>
             
             <div class="product-info-item">
-                <strong>商品説明:</strong>
+                <strong>商品説明</strong>
                 <p class="description">{{ $product->description ?? '説明がありません' }}</p>
+
+                <strong>商品の情報</strong>
+                <p class="category">カテゴリー {{ $product->category->name ?? 'カテゴリが設定されていません' }}</p>
+                <p class="condition">商品の状態 {{ $product->condition ?? '状態情報がありません' }}</p>
             </div>
-      
-            <p class="category">カテゴリ: {{ $product->category->name ?? 'カテゴリが設定されていません' }}</p>
-            <p class="condition">状態: {{ $product->condition ?? '状態情報がありません' }}</p>
         </section>
     </article>
 </main>
