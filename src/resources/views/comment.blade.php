@@ -12,7 +12,7 @@
             </section>
             <section class="product-detail__info">
                 <h1>{{ $product->name ?? '商品名がありません' }}</h1>
-                <p class="brand">ブランド: {{ $product->brand ?? 'ブランド情報がありません' }}</p>
+                <p class="brand">{{ $product->brand ?? 'ブランド情報がありません' }}</p>
                 <p class="price">¥{{ $product->price ? number_format($product->price) : '価格が設定されていません' }}(値段)</p>
                 <div class="product-detail__actions">
                     <button class="favorite-button {{ $isFavorited ? 'favorited' : '' }}" data-product-id="{{ $product->id }}">
@@ -37,13 +37,6 @@
                                     <strong>{{ $comment->user->profile->name ?? $comment->user->name }}</strong>
                                 </div>
                                 <p>{{ $comment->comment }}</p>
-                                @if(auth()->check() && auth()->id() == $comment->user_id)
-                                    <form action="{{ route('product.destroyComment', ['productId' => $product->id, 'commentId' => $comment->id]) }}" method="POST" style="display:inline;">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">削除</button>
-                                    </form>
-                                @endif
                             </article>
                         @endforeach
                     @else
@@ -54,10 +47,8 @@
                     <form action="{{ route('product.storeComment', ['id' => $product->id]) }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="content">コメント内容</label>
-
+                            <label for="content">商品へのコメント</label>
                             <textarea name="comment" id="content" class="form-control @error('comment') is-invalid @enderror" required>{{ old('comment') }}</textarea>
-
                             @error('comment')
                                 <div class="invalid-feedback" style="color: red;">
                                     {{ $message }}
