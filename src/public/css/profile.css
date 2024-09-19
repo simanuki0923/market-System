@@ -19,6 +19,7 @@
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
+    text-align: left;
 }
 
 .edit-profile input[type="text"] {
@@ -32,9 +33,10 @@
 
 .edit-profile .file-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     gap: 10px;
+    margin-bottom: 40px;
 }
 
 .edit-profile .file-label {
@@ -70,6 +72,7 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 16px;
+    margin-top: 40px;
 }
 
 .edit-profile button:hover {

@@ -46,13 +46,23 @@
     color: #000;
 }
 
+.product-info-item strong {
+    font-weight: bold;
+    font-size: 25px;
+}
+
 .product-detail__info .price {
     font-size: 35px;
     font-weight: bold;
     color: #000;
 }
 
-.product-detail__info .brand,
+.product-detail__info .brand {
+    font-size: 25px;
+    font-weight: bold;
+    color: #000;
+}
+
 .product-detail__info .category,
 .product-detail__info .condition {
     font-size: 20px;
@@ -61,7 +71,7 @@
 }
 
 .product-detail__info .description {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #000;
     margin-top: 20px;
@@ -108,6 +118,7 @@
     cursor: pointer;
     transition: background-color 0.3s ease;
     width: 60%;
+    margin-bottom: 10px;
 }
 
 .purchase-button:hover {
@@ -153,9 +164,7 @@
 
     .action-buttons {
         flex-direction: row;
-        /* ボタンを縦に並べる */
         align-items: center;
-        /* 中央揃え */
         gap: 50px;
         margin: 15px 0;
         width: 100%;
@@ -164,9 +173,7 @@
 
     .purchase-button {
         width: 100%;
-        /* 親要素の幅いっぱい */
         max-width: 400px;
-        /* 最大幅400px */
         margin-bottom: 20px;
         text-align: center;
         margin: 0 auto;
