@@ -21,11 +21,11 @@
             <nav class="header__nav">
                 <ul class="nav__list">
                     @if (Auth::check())
-                        <li class="nav__item"><a href="/mypage" class="nav__item-link">マイページ</a></li>
                         <form action="/logout" method="post">
                             @csrf
                             <li class="nav__item"><button type="submit" class="nav__item-button">ログアウト</button></li>
                         </form>
+                        <li class="nav__item"><a href="/mypage" class="nav__item-link">マイページ</a></li>
                     @else
                         <li class="nav__item"><a href="/login" class="nav__item-link">ログイン</a></li>
                         <li class="nav__item"><a href="/register" class="nav__item-link">会員登録</a></li>
