@@ -65,15 +65,4 @@ class ProductController extends Controller
                          ->with('success', 'コメントが投稿されました。');
     }
 
-    public function destroyComment($productId, $commentId)
-    {
-        $comment = Comment::where('id', $commentId)
-                          ->where('user_id', auth()->id())
-                          ->firstOrFail();
-
-        $comment->delete();
-
-        return redirect()->route('product.comments', ['id' => $productId])
-                         ->with('success', 'コメントが削除されました。');
-    }
 }
